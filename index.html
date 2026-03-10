@@ -258,21 +258,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: rgba(12,10,9,0.8);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  border-bottom: 1px solid var(--border);
+  background: #000;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   transition: background 300ms var(--ease);
 }
 
 .nav-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 32px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 64px;
+  height: 60px;
 }
 
 .nav-logo {
@@ -284,31 +281,49 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   letter-spacing: -0.02em;
   color: var(--text);
   flex-shrink: 0;
+  margin-right: auto;
 }
 
-.nav-logo svg { width: 32px; height: 32px; }
+.nav-logo svg { width: 28px; height: 28px; }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 32px;
   list-style: none;
 }
 
 .nav-menu a {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-2);
   transition: color 200ms var(--ease);
   white-space: nowrap;
 }
 .nav-menu a:hover { color: var(--text); }
+.nav-menu a.nav-link--green { color: var(--green); font-weight: 600; }
+.nav-menu a.nav-link--green:hover { color: #5EEAD4; }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-left: auto;
+}
+
+.nav-login {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-2);
+  transition: color 200ms var(--ease);
+}
+.nav-login:hover { color: var(--text); }
 
 .nav-cta {
-  padding: 9px 22px;
+  padding: 10px 24px;
   background: var(--orange);
   color: #0C0A09;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   border-radius: 100px;
   transition: all 250ms var(--ease);
@@ -336,8 +351,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 64px; left: 0; right: 0; bottom: 0;
-  background: rgba(12,10,9,0.96);
+  top: 60px; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 999;
@@ -355,6 +370,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: color 200ms var(--ease);
 }
 .mobile-menu a:hover { color: var(--text); }
+.mobile-menu a.nav-link--green { color: var(--green); }
 .mobile-menu .nav-cta {
   margin-top: 16px;
   text-align: center;
@@ -364,7 +380,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 @media (max-width: 900px) {
   .nav-menu { display: none; }
-  .nav-cta-desktop { display: none; }
+  .nav-right { display: none; }
   .nav-hamburger { display: flex; }
 }
 
@@ -1362,7 +1378,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
   align-items: start;
 }
 
@@ -1370,9 +1386,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 36px 28px;
+  padding: 40px 28px 32px;
   position: relative;
-  overflow: hidden;
   transition: border-color 220ms var(--ease), transform 200ms var(--ease);
 }
 .pricing-card:hover {
@@ -1387,27 +1402,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .pricing-card--popular:hover {
   border-color: var(--green);
 }
-.pricing-card--popular::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--green), transparent);
-}
-
-.pricing-popular-tag {
-  position: absolute;
-  top: 16px; right: 16px;
-  padding: 4px 10px;
-  background: rgba(52,211,153,0.15);
-  border: 1px solid rgba(52,211,153,0.25);
-  border-radius: 100px;
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--green);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
 
 .pricing-card--mentor {
   border-color: var(--border-o);
@@ -1416,43 +1410,64 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .pricing-card--mentor:hover {
   border-color: var(--orange);
 }
-.pricing-card--mentor::before {
-  content: '';
+
+.pricing-popular-tag {
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  top: -13px; left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 16px;
+  background: var(--green);
+  color: #0C0A09;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
 }
 
-.pricing-tier {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  margin-bottom: 8px;
+.pricing-emoji-icon {
+  width: 48px; height: 48px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
-.pricing-card--popular .pricing-tier { color: var(--green); }
-.pricing-card--mentor .pricing-tier { color: var(--orange); }
 
 .pricing-name {
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.pricing-tagline {
+  font-size: 13px;
+  color: var(--text-3);
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
 .pricing-price {
   display: flex;
   align-items: baseline;
   gap: 4px;
-  margin-bottom: 4px;
+  margin-bottom: 24px;
 }
 
 .pricing-amount {
   font-family: 'Geist Mono', monospace;
-  font-size: 42px;
+  font-size: 40px;
   font-weight: 700;
   line-height: 1;
+}
+.pricing-amount--free {
+  font-family: 'Geist', sans-serif;
+  font-style: italic;
+  font-size: 38px;
+  color: var(--text);
 }
 .pricing-card--popular .pricing-amount { color: var(--green); }
 .pricing-card--mentor .pricing-amount { color: var(--orange); }
@@ -1463,13 +1478,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: 500;
 }
 
-.pricing-desc {
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.6;
+.pricing-divider {
+  height: 1px;
+  background: var(--border);
   margin-bottom: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--border);
 }
 
 .pricing-features {
@@ -1487,6 +1499,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 13px;
   color: var(--text-2);
   line-height: 1.5;
+}
+
+.pricing-features li.pricing-features-header {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  gap: 0;
 }
 
 .pricing-check {
@@ -1715,24 +1737,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <!-- VAI Logo Mark -->
       <svg viewBox="0 0 32 32" fill="none">
-        <rect width="32" height="32" rx="8" fill="#F7941E"/>
-        <path d="M8 10L16 24L24 10" stroke="#0C0A09" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 6L16 28L28 6" stroke="#F7941E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
       VAI
     </a>
 
     <ul class="nav-menu">
-      <li><a href="#growth">Athletes &amp; Families</a></li>
-      <li><a href="#growth">Coaches &amp; Trainers</a></li>
-      <li><a href="#mentor">Organizations</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#avanti">AVANTI</a></li>
+      <li><a href="#pricing">Plans</a></li>
       <li><a href="#earn">Share &amp; Earn</a></li>
+      <li><a href="#mentor">Commissions</a></li>
+      <li><a href="#growth">The App</a></li>
+      <li><a href="#avanti" class="nav-link--green">AVANTI</a></li>
     </ul>
 
-    <a href="#pricing" class="nav-cta nav-cta-desktop">Get Started</a>
+    <div class="nav-right">
+      <a href="#" class="nav-login">Log In</a>
+      <a href="#pricing" class="nav-cta">Get Started</a>
+    </div>
 
     <button class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -1741,12 +1763,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#growth" onclick="document.getElementById('mobileMenu').classList.remove('open')">Athletes &amp; Families</a>
-  <a href="#growth" onclick="document.getElementById('mobileMenu').classList.remove('open')">Coaches &amp; Trainers</a>
-  <a href="#mentor" onclick="document.getElementById('mobileMenu').classList.remove('open')">Organizations</a>
-  <a href="#pricing" onclick="document.getElementById('mobileMenu').classList.remove('open')">Pricing</a>
-  <a href="#avanti" onclick="document.getElementById('mobileMenu').classList.remove('open')">AVANTI</a>
+  <a href="#pricing" onclick="document.getElementById('mobileMenu').classList.remove('open')">Plans</a>
   <a href="#earn" onclick="document.getElementById('mobileMenu').classList.remove('open')">Share &amp; Earn</a>
+  <a href="#mentor" onclick="document.getElementById('mobileMenu').classList.remove('open')">Commissions</a>
+  <a href="#growth" onclick="document.getElementById('mobileMenu').classList.remove('open')">The App</a>
+  <a href="#avanti" class="nav-link--green" onclick="document.getElementById('mobileMenu').classList.remove('open')">AVANTI</a>
+  <a href="#" onclick="document.getElementById('mobileMenu').classList.remove('open')">Log In</a>
   <a href="#pricing" class="nav-cta" onclick="document.getElementById('mobileMenu').classList.remove('open')">Get Started</a>
 </div>
 
@@ -2267,78 +2289,84 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <div class="pricing-header reveal">
       <div class="section-label">Pricing</div>
       <h2 class="pricing-headline">Choose Your Plan</h2>
-      <p class="pricing-sub">Start free. Upgrade when you're ready. Every plan includes Share &amp; Earn.</p>
+      <p class="pricing-sub">Start free. Upgrade when you're ready. Every plan includes community access, messaging, and event discovery.</p>
     </div>
 
     <div class="pricing-grid">
       <!-- FREE -->
       <div class="pricing-card reveal reveal-delay-1">
-        <div class="pricing-tier">Free</div>
-        <div class="pricing-name">VAI Basic</div>
+        <div class="pricing-emoji-icon">&#9889;</div>
+        <div class="pricing-name">VAI BASIC</div>
+        <div class="pricing-tagline">Perfect for getting started and staying organized</div>
         <div class="pricing-price">
-          <span class="pricing-amount mono">$0</span>
-          <span class="pricing-period">/mo</span>
+          <span class="pricing-amount pricing-amount--free">Free</span>
         </div>
-        <p class="pricing-desc">Everything you need to get started. Community, connection, and core tools — completely free.</p>
+        <div class="pricing-divider"></div>
         <ul class="pricing-features">
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Community access &amp; profiles
+            Calendars &amp; event scheduling
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Messaging &amp; connections
+            In-app chat &amp; notifications
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Event discovery
+            Up to 3 groups
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Basic scheduling
+            Share &amp; earn commissions*
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Share &amp; Earn eligible
+            Parental tracking
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Social feed &amp; dashboard
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Customizable profile
           </li>
         </ul>
-        <a href="#" class="pricing-btn pricing-btn--default">Get Started Free</a>
+        <a href="#" class="pricing-btn pricing-btn--default">Start Free</a>
       </div>
 
       <!-- VAI+ (POPULAR) -->
       <div class="pricing-card pricing-card--popular reveal reveal-delay-2">
-        <div class="pricing-popular-tag">Most Popular</div>
-        <div class="pricing-tier">Plus</div>
+        <div class="pricing-popular-tag">MOST POPULAR</div>
+        <div class="pricing-emoji-icon">&#128293;</div>
         <div class="pricing-name">VAI+</div>
+        <div class="pricing-tagline">For go-getters ready to accelerate progress</div>
         <div class="pricing-price">
-          <span class="pricing-amount mono">$9.95</span>
+          <span class="pricing-amount mono">$19.95</span>
           <span class="pricing-period">/mo</span>
         </div>
-        <p class="pricing-desc">Unlock AVANTI AI coaching, enhanced tools, and everything you need to perform at your best.</p>
+        <div class="pricing-divider"></div>
         <ul class="pricing-features">
+          <li class="pricing-features-header">Everything in Basic AND:</li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Everything in Free
+            <strong style="color:var(--green)">AVANTI AI coach</strong>
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <strong style="color:var(--green)">AVANTI AI Coach</strong>
+            Smart prep &amp; planning
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Enhanced athlete profile
+            Progress tracking &amp; insights
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Advanced calendar &amp; scheduling
+            Smart social posting <span style="font-size:11px;color:var(--text-3)">(soon)</span>
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Abilities tracking &amp; progress
-          </li>
-          <li>
-            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Full Share &amp; Earn commissions
+            Unlimited groups
           </li>
         </ul>
         <a href="#" class="pricing-btn pricing-btn--green">Get VAI+</a>
@@ -2346,40 +2374,42 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
       <!-- MENTOR -->
       <div class="pricing-card pricing-card--mentor reveal reveal-delay-3">
-        <div class="pricing-tier">Mentor</div>
-        <div class="pricing-name">VAI Mentor</div>
+        <div class="pricing-emoji-icon">&#127942;</div>
+        <div class="pricing-name">VAI MENTOR</div>
+        <div class="pricing-tagline">For leaders &amp; organizations ready to scale</div>
         <div class="pricing-price">
           <span class="pricing-amount mono">$99.95</span>
           <span class="pricing-period">/mo</span>
         </div>
-        <p class="pricing-desc">The complete business toolkit. Payments, billing, scheduling, dashboards, and a branded website.</p>
+        <div class="pricing-divider"></div>
         <ul class="pricing-features">
+          <li class="pricing-features-header">Everything in VAI+ AND:</li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Everything in VAI+
+            <strong style="color:var(--orange)">AVANTI Business</strong>
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Payment management
+            Payment &amp; subscription billing
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Subscription billing
+            Schedule paid events
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Revenue dashboards
+            Roll call calendar
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            Custom branded website
+            Customizable website
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            AI-enhanced client engagement
+            Rebates on processing fees
           </li>
         </ul>
-        <a href="#" class="pricing-btn pricing-btn--orange">Get Mentor Plan</a>
+        <a href="#" class="pricing-btn pricing-btn--orange">Get Mentor</a>
       </div>
     </div>
   </div>
