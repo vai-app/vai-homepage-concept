@@ -404,7 +404,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 380px;
   gap: 60px;
   align-items: center;
 }
@@ -702,8 +702,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .cost-section {
   padding: 100px 0;
   position: relative;
-  background: #FAF9F7;
+  background:
+    linear-gradient(180deg, rgba(250,249,247,0.72) 0%, rgba(255,247,237,0.68) 100%),
+    url(assets/gray-distressed-bg-1.jpg) center / cover no-repeat;
+  background-blend-mode: multiply, normal;
   color: #1C1917;
+  overflow: hidden;
+}
+
+.cost-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 20%, rgba(247,148,30,0.14), transparent 48%);
+  pointer-events: none;
+}
+
+.cost-section .container {
+  position: relative;
+  z-index: 1;
 }
 
 .cost-section .section-label { color: #92400E; }
@@ -779,7 +796,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .stat-card {
   text-align: center;
   padding: 28px 20px;
-  background: #FFFFFF;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.74), rgba(255,255,255,0.66)),
+    url(assets/gray-distressed-bg-1.jpg) center / cover no-repeat;
+  background-blend-mode: multiply, normal;
   border: 1px solid #E7E5E4;
   border-radius: var(--radius);
   transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
@@ -966,12 +986,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .earn-step {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
+  gap: 8px;
+  padding: 8px 1rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 100px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-2);
 }
@@ -1035,7 +1055,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 768px) {
   .earn-examples { grid-template-columns: 1fr; }
   .earn-how { flex-direction: column; }
-  .earn-step-arrow { transform: rotate(90deg); }
 }
 
 /* ══════════════════════════════════════════
@@ -1729,6 +1748,385 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero-ctas { flex-direction: column; align-items: stretch; }
   .hero-ctas .btn-primary, .hero-ctas .text-link { text-align: center; justify-content: center; }
 }
+
+/* ── GLOBAL: AVANTI green text ── */
+.text-avanti { color: var(--green); font-weight: 700; }
+.text-vai-bold { color: var(--orange); font-weight: 700; }
+
+/* ── HERO UPDATES ── */
+.hero-title { text-transform: uppercase; }
+.hero-pillars {
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 48px;
+}
+.pillar:nth-child(3) .pillar-icon { background: rgba(52,211,153,0.1); }
+.pillar:nth-child(3) .pillar-icon svg { stroke: var(--green); }
+
+@media (max-width: 900px) {
+  .hero-pillars { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 580px) {
+  .hero-pillars { grid-template-columns: 1fr; }
+}
+
+/* ── SECTION 2: INTRO GRID ── */
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-top: 48px;
+}
+.intro-left, .intro-right {
+  font-size: 16px;
+  color: var(--text-2);
+  line-height: 1.8;
+}
+.intro-left strong, .intro-right strong { color: var(--text); font-weight: 600; }
+.intro-headline {
+  font-size: clamp(14px, 2.5vw, 20px);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+.intro-sub {
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.intro-header { text-align: center; max-width: 700px; margin: 0 auto; }
+
+.phone-mockup--small {
+  width: 240px;
+  height: 480px;
+  background: #1A1714;
+  border-radius: 32px;
+  border: 2px solid rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    0 20px 60px rgba(0,0,0,0.4),
+    0 0 80px rgba(247,148,30,0.05);
+  margin: 0 auto;
+}
+.phone-mockup--small .phone-notch {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 100px; height: 24px; background: #0C0A09; border-radius: 0 0 14px 14px; z-index: 10;
+}
+.phone-mockup--small .phone-screen-inner {
+  padding: 36px 14px 14px; height: 100%;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .intro-grid { grid-template-columns: 1fr; gap: 32px; }
+  .intro-left, .intro-right { text-align: center; }
+}
+
+/* ── SECTION 3: GREEN STATS + ORANGE REVERSAL ── */
+.stat-number--green { color: var(--green) !important; }
+.stats-bar { grid-template-columns: repeat(4, 1fr); }
+
+.cost-reversal--orange {
+  background: rgba(247,148,30,0.06);
+  border: 1px solid rgba(247,148,30,0.18);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin: 40px 0 0;
+}
+.cost-reversal--orange::before {
+  background: linear-gradient(90deg, var(--orange), var(--orange-hi));
+}
+.cost-reversal--orange p {
+  font-size: 17px; line-height: 1.8; color: #44403C;
+}
+.cost-reversal--orange strong { color: #0C0A09; font-weight: 700; }
+.cost-reversal--orange .reversal-accent { color: var(--orange); font-weight: 700; }
+
+@media (max-width: 640px) {
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── SECTION 5: EARN — WHITE/ORANGE ── */
+.earn-section {
+  padding: 100px 0;
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(255,250,245,0.74) 0%, rgba(255,245,235,0.68) 100%),
+    url(assets/gray-distressed-bg-1.jpg) center / cover no-repeat;
+  background-blend-mode: multiply, normal;
+  color: #1C1917;
+  overflow: hidden;
+}
+.earn-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 12% 12%, rgba(247,148,30,0.15), transparent 40%);
+  pointer-events: none;
+}
+.earn-section .container {
+  position: relative;
+  z-index: 1;
+}
+.earn-section .section-label { color: var(--orange); }
+
+.earn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.earn-left .earn-headline {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900; line-height: 1.1;
+  letter-spacing: -0.02em; margin-bottom: 14px;
+  color: #0C0A09; text-align: left;
+}
+.earn-left .earn-headline .highlight-orange { color: var(--orange); }
+.earn-left .earn-body {
+  font-size: 17px; color: #57534E; line-height: 1.7;
+  margin-bottom: 28px; text-align: left;
+}
+.earn-left .earn-examples {
+  display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px;
+}
+.earn-left .earn-example {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.74), rgba(255,255,255,0.66)),
+    url(assets/gray-distressed-bg-1.jpg) center / cover no-repeat;
+  background-blend-mode: multiply, normal;
+  border: 1px solid #E7E5E4;
+  border-radius: var(--radius); padding: 20px 24px;
+}
+.earn-left .earn-example-role {
+  display: inline-flex; padding: 3px 10px;
+  background: rgba(247,148,30,0.1); border: 1px solid rgba(247,148,30,0.2);
+  border-radius: 100px; font-size: 11px; font-weight: 600;
+  color: var(--orange); text-transform: uppercase;
+  letter-spacing: 0.06em; margin-bottom: 8px;
+}
+.earn-left .earn-example-text {
+  font-size: 14px; color: #44403C; line-height: 1.65;
+}
+.earn-left .earn-example-text strong { color: #0C0A09; }
+
+.earn-right {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.earn-carousel {
+  position: relative;
+  min-height: 560px;
+}
+.earn-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+.earn-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.earn-slide .earn-step {
+  align-self: center;
+}
+.earn-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.earn-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(28,25,23,0.2);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.earn-dot.active {
+  background: var(--orange);
+}
+.earn-section .earn-step {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.76), rgba(255,255,255,0.68)),
+    url(assets/gray-distressed-bg-1.jpg) center / cover no-repeat;
+  background-blend-mode: multiply, normal;
+  border: 1px solid #E7E5E4;
+  color: #44403C;
+}
+.earn-section .earn-step-num {
+  background: rgba(247,148,30,0.12); color: var(--orange);
+}
+.earn-section .earn-cta { text-align: left; }
+
+@media (max-width: 900px) {
+  .earn-grid { grid-template-columns: 1fr; gap: 40px; }
+  .earn-carousel { min-height: 540px; }
+}
+@media (max-width: 480px) {
+  .earn-carousel { min-height: 520px; }
+}
+
+/* ── SECTION 7: MENTOR 2-COL + CAROUSEL ── */
+.mentor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.mentor-left .mentor-header {
+  text-align: left; margin-bottom: 32px;
+}
+.mentor-features { display: block; margin-bottom: 24px; }
+
+.mentor-feature-group {
+  opacity: 0; max-height: 0; overflow: hidden;
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+.mentor-feature-group.active {
+  opacity: 1; max-height: 500px;
+}
+.mentor-feature-group .mentor-feat { margin-bottom: 12px; }
+
+.mentor-right {
+  position: relative; min-height: 520px;
+}
+.mentor-mockup-slide {
+  position: absolute; inset: 0;
+  display: flex; justify-content: center; align-items: flex-start;
+  opacity: 0; transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+.mentor-mockup-slide.active {
+  opacity: 1; pointer-events: auto;
+}
+
+.mentor-dots, .testimonial-dots {
+  display: flex; gap: 8px; margin-top: 16px;
+}
+.mentor-dot, .t-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.15); cursor: pointer;
+  transition: background 0.3s ease;
+}
+.mentor-dot.active { background: var(--orange); }
+.t-dot.active { background: var(--orange); }
+
+.mentor-left .mentor-cta { text-align: left; margin-top: 20px; }
+
+@media (max-width: 900px) {
+  .mentor-grid { grid-template-columns: 1fr; }
+  .mentor-right { min-height: 480px; }
+  .mentor-left .mentor-header { text-align: center; }
+}
+
+/* ── SECTION 8: TESTIMONIAL CAROUSEL ── */
+.proof-stats { margin-bottom: 80px; }
+
+.testimonial-carousel {
+  position: relative; min-height: 200px;
+  max-width: 700px; margin: 0 auto; text-align: center;
+}
+.testimonial-slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.5s ease;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center;
+}
+.testimonial-slide.active {
+  opacity: 1; position: relative;
+}
+.testimonial-slide .testimonial-quote {
+  font-size: 18px; color: var(--text-2); line-height: 1.8;
+  font-style: italic; margin-bottom: 24px;
+  position: relative; padding-top: 32px;
+}
+.testimonial-slide .testimonial-quote::before {
+  content: '\201C'; position: absolute; top: -8px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 56px; color: var(--orange-dim);
+  font-style: normal; font-family: Georgia, serif; line-height: 1;
+}
+.testimonial-slide .testimonial-author {
+  display: flex; align-items: center; gap: 6px;
+  justify-content: center; font-size: 15px;
+}
+.testimonial-slide .testimonial-name { font-weight: 700; color: var(--text); }
+.testimonial-slide .testimonial-role-text { color: var(--orange); font-weight: 500; }
+.testimonial-dots { justify-content: center; margin-top: 28px; }
+
+/* ── SECTION 9: PRICING TOGGLE + ICONS ── */
+.pricing-toggle {
+  display: flex; align-items: center; gap: 14px;
+  justify-content: center; margin-top: 24px;
+}
+.toggle-label {
+  font-size: 14px; font-weight: 500; color: var(--text-3);
+  display: flex; align-items: center; gap: 6px;
+  transition: color 0.2s ease;
+}
+.toggle-label.active-label { color: var(--text); }
+.toggle-save {
+  font-size: 11px; font-weight: 700;
+  background: rgba(52,211,153,0.15); color: var(--green);
+  padding: 2px 8px; border-radius: 100px;
+}
+.toggle-switch {
+  position: relative; width: 48px; height: 26px;
+  display: inline-block;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute; inset: 0; cursor: pointer;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 26px; transition: 0.3s ease;
+}
+.toggle-slider::before {
+  content: ''; position: absolute;
+  height: 20px; width: 20px; left: 2px; bottom: 2px;
+  background: var(--orange); border-radius: 50%;
+  transition: 0.3s ease;
+}
+.toggle-switch input:checked + .toggle-slider { background: rgba(247,148,30,0.15); }
+.toggle-switch input:checked + .toggle-slider::before { transform: translateX(22px); }
+
+.pricing-savings {
+  display: none; font-size: 11px; font-weight: 700;
+  color: var(--green); margin-top: 4px;
+}
+.pricing-savings.show { display: block; }
+
+.pricing-icon-box {
+  width: 48px; height: 48px;
+  border-radius: 14px; display: flex;
+  align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.pricing-icon-box svg {
+  width: 24px; height: 24px; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+.pricing-icon-box--basic { background: rgba(255,255,255,0.06); }
+.pricing-icon-box--basic svg { stroke: var(--text-2); }
+.pricing-icon-box--plus { background: rgba(52,211,153,0.1); }
+.pricing-icon-box--plus svg { stroke: var(--green); }
+.pricing-icon-box--mentor { background: rgba(247,148,30,0.1); }
+.pricing-icon-box--mentor svg { stroke: var(--orange); }
+
+.pricing-grid { align-items: stretch; }
+.pricing-card { display: flex; flex-direction: column; }
+.pricing-card .pricing-features { flex: 1; }
 </style>
 </head>
 <body>
@@ -1778,7 +2176,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="hero-content">
         <div class="hero-badge">
           <span class="badge-dot"></span>
-          Powered by AVANTI, VAI's intelligent guidance engine
+          Powered by <span class="text-avanti">AVANTI</span>
         </div>
 
         <h1 class="hero-title">
@@ -1788,51 +2186,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </h1>
 
         <p class="hero-sub">
-          One platform for performance, organization, and income — built for athletes, families, coaches, trainers, and communities. Whether you're chasing a personal record or building a business, VAI meets you where you are.
+          Performance tracking. Smart coaching. Real income. Whether you're training for your first race or running a gym, everything lives in one place.
         </p>
-
-        <div class="hero-pillars">
-          <!-- Pillar 1: Intelligent Guidance -->
-          <div class="pillar">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            </div>
-            <div>
-              <div class="pillar-name">Intelligent Guidance</div>
-              <div class="pillar-desc">Personalized AI mentorship powered by AVANTI</div>
-            </div>
-          </div>
-          <!-- Pillar 2: Measurable Progress -->
-          <div class="pillar">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <div>
-              <div class="pillar-name">Measurable Progress</div>
-              <div class="pillar-desc">Structured development with trackable results</div>
-            </div>
-          </div>
-          <!-- Pillar 3: Organized Growth -->
-          <div class="pillar">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <div>
-              <div class="pillar-name">Organized Growth</div>
-              <div class="pillar-desc">Scheduling, coordination, messaging, and program management</div>
-            </div>
-          </div>
-          <!-- Pillar 4: Built-In Income (green) -->
-          <div class="pillar">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </div>
-            <div>
-              <div class="pillar-name">Built-In Income</div>
-              <div class="pillar-desc">Turn participation into earnings through Share &amp; Earn</div>
-            </div>
-          </div>
-        </div>
 
         <div class="hero-ctas">
           <a href="#pricing" class="btn-primary">
@@ -1861,20 +2216,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
                 <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
               </div>
               <div class="phone-avanti-text">
-                <strong>AVANTI:</strong> You have practice at 4 PM. Hydrate now and do a 10-min dynamic warm-up.
+                <strong>AVANTI:</strong> Practice at 4 PM. Hydrate now — 10-min dynamic warm-up recommended.
               </div>
             </div>
 
             <div class="phone-card">
               <div class="phone-card-label">Weekly Progress</div>
               <div class="phone-card-value">87<span style="font-size:14px;color:var(--text-3)">/100</span></div>
-              <div class="phone-card-desc">Performance score up 12% this week</div>
+              <div class="phone-card-desc">Up 12% from last week</div>
             </div>
 
             <div class="phone-card">
               <div class="phone-card-label">Share &amp; Earn</div>
               <div class="phone-card-value phone-card-value--green">$142.50</div>
-              <div class="phone-card-desc">Earned this month from 6 referrals</div>
+              <div class="phone-card-desc">This month &middot; 6 referrals</div>
             </div>
 
             <div class="phone-bar">
@@ -1895,24 +2250,106 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
       </div>
     </div>
+
+    <!-- Pillars — full width, single row -->
+    <div class="hero-pillars">
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <div class="pillar-name">Intelligent Guidance</div>
+          <div class="pillar-desc">AI mentorship from <span class="text-avanti">AVANTI</span></div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div>
+          <div class="pillar-name">Measurable Progress</div>
+          <div class="pillar-desc">Track real results over time</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div>
+          <div class="pillar-name">Organized Growth</div>
+          <div class="pillar-desc">Scheduling, messaging, and coordination</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <div class="pillar-name">Built-In Income</div>
+          <div class="pillar-desc">Earn through Share &amp; Earn</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ══════════════ SECTION 2: INTRODUCING VAI ══════════════ -->
 <section class="intro-section">
   <div class="container">
-    <div class="intro-inner reveal">
+    <div class="intro-header reveal">
       <div class="section-label section-label--orange">Introducing VAI</div>
-      <h2 class="intro-headline">
-        Performance Fuels Progress.<br>
-        <span class="intro-accent">Community Creates Income.</span>
-      </h2>
-      <p class="intro-body">
-        VAI is an AI-powered ecosystem where <strong>performance fuels progress</strong> and <strong>community creates income</strong>. With intelligent guidance from AVANTI and a built-in Share &amp; Earn program, VAI helps people of all ages develop their skills, improve their health, and build real income — all from one platform.
-      </p>
-      <p class="intro-body">
-        Whether you're a 12-year-old soccer player, a personal trainer scaling your business, a yoga studio looking for better tools, or a parent managing three kids' schedules — <strong>VAI was built for you.</strong>
-      </p>
+      <h2 class="intro-headline">An AI-Powered Ecosystem</h2>
+      <p class="intro-sub">Where performance fuels progress and community creates income.</p>
+    </div>
+
+    <div class="intro-grid reveal">
+      <div class="intro-left">
+        <p>With intelligent guidance from <span class="text-avanti">AVANTI</span> and a built-in Share &amp; Earn program, VAI helps people of all ages develop their skills, improve their health, and build real income — all from one platform.</p>
+      </div>
+
+      <div class="intro-center">
+        <div class="phone-mockup--small">
+          <div class="phone-notch"></div>
+          <div class="phone-screen-inner">
+            <div class="phone-header">
+              <div class="phone-header-logo">VAI</div>
+              <div class="phone-header-sub">Dashboard</div>
+            </div>
+            <div class="phone-card">
+              <div class="phone-card-label">Today's Focus</div>
+              <div class="phone-card-title" style="font-size:12px;color:var(--orange);">Speed &amp; Agility</div>
+              <div class="phone-card-desc">3 drills queued by <span style="color:var(--green);font-weight:600;">AVANTI</span></div>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <div class="phone-card" style="flex:1;padding:10px;">
+                <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Sessions</div>
+                <div style="font-size:18px;font-weight:700;color:var(--orange);font-family:'Geist Mono',monospace;">24</div>
+              </div>
+              <div class="phone-card" style="flex:1;padding:10px;">
+                <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Earned</div>
+                <div style="font-size:18px;font-weight:700;color:var(--green);font-family:'Geist Mono',monospace;">$86</div>
+              </div>
+            </div>
+            <div class="phone-card" style="padding:10px;">
+              <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Weekly Progress</div>
+              <div style="height:6px;background:var(--surface);border-radius:3px;overflow:hidden;">
+                <div style="width:73%;height:100%;background:linear-gradient(90deg,var(--orange),var(--green));border-radius:3px;"></div>
+              </div>
+              <div style="font-size:10px;color:var(--text-2);margin-top:4px;">73% of weekly goal</div>
+            </div>
+            <div class="phone-bar" style="margin-top:auto;">
+              <div class="phone-bar-item active"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+              <div class="phone-bar-item"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+              <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-right">
+        <p>Whether you're a 12-year-old soccer player, a personal trainer growing your client base, a yoga studio that needs better tools, or a parent juggling three kids' schedules — <span class="text-vai-bold">VAI was built for you.</span></p>
+      </div>
     </div>
   </div>
 </section>
@@ -1926,31 +2363,31 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <span class="stat-highlight">$40 Billion.</span> That's What American Families Spend on Youth Sports Every Year.
     </h2>
 
-    <p class="cost-sub reveal reveal-delay-2">And it's breaking families apart from the things that matter most.</p>
+    <p class="cost-sub reveal reveal-delay-2">Kids are being forced to quit the sports they love because their families can't keep up with the cost.</p>
 
-    <p class="cost-body reveal reveal-delay-3">
-      Kids are being forced to quit the sports they love because their families can't keep up with the cost. By 2030, youth sports will split into two worlds — <strong>premium experiences for the wealthy</strong> and <strong>bare-bones programs for everyone else</strong>. The middle is disappearing. And the kids caught in between are losing more than a game — they're losing mentorship, structure, community, and opportunity.
-    </p>
-
-    <div class="cost-reversal reveal reveal-delay-3">
-      <p>
-        <strong>VAI Basic is free.</strong> Not discounted. Not "freemium with an asterisk." <strong>Free.</strong> Zero cost in a $1,016-per-year world. And through Share &amp; Earn, kids and families don't just save money — <span class="reversal-accent">they make money</span>. VAI doesn't reduce the cost barrier. <span class="reversal-accent">It reverses it.</span>
-      </p>
-    </div>
-
-    <div class="stats-bar reveal reveal-delay-4">
+    <div class="stats-bar reveal reveal-delay-3">
       <div class="stat-card">
-        <div class="stat-number mono">$1,016</div>
+        <div class="stat-number stat-number--green mono">$1,016</div>
         <div class="stat-label">Average cost per child, per year</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number mono">70%</div>
+        <div class="stat-number stat-number--green mono">70%</div>
         <div class="stat-label">Drop out by age 13</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number mono">6X</div>
+        <div class="stat-number stat-number--green mono">46%</div>
+        <div class="stat-label">Cost increase since 2019</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number stat-number--green mono">6X</div>
         <div class="stat-label">Inequity gap for low-income families</div>
       </div>
+    </div>
+
+    <div class="cost-reversal cost-reversal--orange reveal reveal-delay-4">
+      <p>
+        <strong>VAI Basic is free.</strong> Not "free with a catch." Actually free. In a world where families spend over $1,000 a year per kid, that matters. And with Share &amp; Earn, families don't just save — <span class="reversal-accent">they earn money back</span>. This isn't a discount. <span class="reversal-accent">It's a reversal.</span>
+      </p>
     </div>
   </div>
 </section>
@@ -1962,10 +2399,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="section-label section-label--orange">Meet AVANTI</div>
       <h2 class="avanti-headline">Intelligence That<br>Moves With You.</h2>
       <p class="avanti-sub">
-        AVANTI is your personal AI-powered mentor — proactive, adaptive, and built for real performance.
+        <span class="text-avanti">AVANTI</span> is your AI coach. It knows your schedule, adapts to your progress, and shows up before you need it.
       </p>
       <div class="avanti-equalizer">
-        Wealthy families pay thousands for private coaching and elite training programs. <strong>AVANTI gives every kid — and every adult — that same level of personalized guidance.</strong> For the cost of a streaming subscription.
+        Private coaching costs thousands. <strong><span class="text-avanti">AVANTI</span> puts that same level of guidance in everyone's pocket</strong> — for less than a streaming subscription.
       </div>
     </div>
 
@@ -1976,7 +2413,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <div class="avanti-feature-title">Proactive Preparation</div>
-        <div class="avanti-feature-desc">Knows your schedule, delivers personalized insights and recommendations before practices, games, and training sessions.</div>
+        <div class="avanti-feature-desc">Checks your schedule and sends you what you need before practice, games, or training — not after.</div>
       </div>
       <div class="glass-card glass-card--accent">
         <div class="avanti-icon">
@@ -1984,7 +2421,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="9" y1="21" x2="15" y2="21"/><line x1="10" y1="17" x2="10" y2="21"/><line x1="14" y1="17" x2="14" y2="21"/></svg>
         </div>
         <div class="avanti-feature-title">Adaptive Coaching</div>
-        <div class="avanti-feature-desc">Adjusts guidance based on your age, activity, goals, and progress. Gets smarter the more you use it.</div>
+        <div class="avanti-feature-desc">Learns your patterns, your goals, your pace. The more you use it, the sharper it gets.</div>
       </div>
       <div class="glass-card glass-card--accent">
         <div class="avanti-icon">
@@ -1992,7 +2429,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
         </div>
         <div class="avanti-feature-title">Progress You Can See</div>
-        <div class="avanti-feature-desc">Tracks your development over time, celebrates wins, identifies growth areas, and adjusts your plan automatically.</div>
+        <div class="avanti-feature-desc">Tracks where you've been and where you're headed. Adjusts your plan as you grow.</div>
       </div>
     </div>
 
@@ -2008,57 +2445,179 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <!-- ══════════════ SECTION 5: SHARE & EARN ══════════════ -->
 <section class="earn-section" id="earn">
   <div class="container">
-    <div class="earn-header reveal">
-      <div class="section-label section-label--green">Share &amp; Earn</div>
-      <h2 class="earn-headline">Share VAI. <span class="highlight-green">Get Paid.</span><br>It's That Simple.</h2>
-      <p class="earn-body">
-        Every other platform takes your money and gives you nothing back. VAI flipped the model.
-      </p>
-    </div>
+    <div class="earn-grid">
+      <div class="earn-left reveal">
+        <div class="section-label section-label--orange">Share &amp; Earn</div>
+        <h2 class="earn-headline">Share VAI. <span class="highlight-orange">Get Paid.</span><br>It's That Simple.</h2>
+        <p class="earn-body">Most platforms take your money and give nothing back. We flipped that.</p>
 
-    <div class="earn-how reveal">
-      <div class="earn-step">
-        <span class="earn-step-num">1</span>
-        Share your link
-      </div>
-      <span class="earn-step-arrow">&rarr;</span>
-      <div class="earn-step">
-        <span class="earn-step-num">2</span>
-        They get 50% off for life
-      </div>
-      <span class="earn-step-arrow">&rarr;</span>
-      <div class="earn-step">
-        <span class="earn-step-num">3</span>
-        You earn 25% recurring
-      </div>
-    </div>
+        <div class="earn-examples">
+          <div class="earn-example">
+            <div class="earn-example-role">Parent</div>
+            <p class="earn-example-text">Share VAI with <strong>5 soccer families</strong> in your kid's league. Those referral earnings <strong>cover your own fees</strong> — and then some.</p>
+          </div>
+          <div class="earn-example">
+            <div class="earn-example-role">Trainer</div>
+            <p class="earn-example-text">Share with your <strong>existing clients</strong>. You earn <strong>recurring revenue on top of coaching income</strong> — without lifting a finger.</p>
+          </div>
+          <div class="earn-example">
+            <div class="earn-example-role">Athlete</div>
+            <p class="earn-example-text">A 15-year-old shares with <strong>teammates and school friends</strong>. That's <strong>gear money, camp money, travel money</strong> — earned by a kid, not spent by a parent.</p>
+          </div>
+        </div>
 
-    <div class="earn-examples reveal">
-      <div class="glass-card glass-card--green earn-example">
-        <div class="earn-example-role">Parent</div>
-        <p class="earn-example-text">
-          A parent shares VAI with <strong>5 soccer families</strong> in their league. The referral earnings <strong>cover their own registration fees automatically</strong> — and then some.
-        </p>
+        <div class="earn-cta">
+          <a href="#pricing" class="btn-primary">
+            Learn More About Share &amp; Earn
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
       </div>
-      <div class="glass-card glass-card--green earn-example">
-        <div class="earn-example-role">Trainer</div>
-        <p class="earn-example-text">
-          A personal trainer shares VAI with their <strong>existing client base</strong>. They now earn <strong>recurring revenue on top of coaching income</strong> — without doing extra work.
-        </p>
-      </div>
-      <div class="glass-card glass-card--green earn-example">
-        <div class="earn-example-role">Athlete</div>
-        <p class="earn-example-text">
-          A 15-year-old athlete shares with their <strong>team and school friends</strong>. That's <strong>gear money, camp money, travel money</strong> — earned by a kid, not spent by a parent.
-        </p>
-      </div>
-    </div>
 
-    <div class="earn-cta reveal">
-      <a href="https://www.vai.app/share" class="btn-primary btn-green">
-        Learn More About Share &amp; Earn
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      <div class="earn-right reveal">
+        <div class="earn-carousel">
+          <div class="earn-slide active" data-index="0">
+            <div class="earn-step">
+              <span class="earn-step-num">1</span>
+              Share your link
+            </div>
+            <div class="phone-mockup--small">
+              <div class="phone-notch"></div>
+              <div class="phone-screen-inner">
+                <div class="phone-header">
+                  <div class="phone-header-logo" style="color:var(--green);">Share &amp; Earn</div>
+                  <div class="phone-header-sub">Step 1: Send your link</div>
+                </div>
+                <div class="phone-card">
+                  <div class="phone-card-label">Your Link</div>
+                  <div style="background:var(--surface);border-radius:6px;padding:8px 10px;font-size:11px;color:var(--text-2);font-family:'Geist Mono',monospace;">vai.app/r/yourname</div>
+                </div>
+                <div class="phone-card" style="padding:10px;">
+                  <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Share To</div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <span style="padding:5px 8px;border-radius:100px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);font-size:10px;color:var(--green);">Team Group</span>
+                    <span style="padding:5px 8px;border-radius:100px;background:rgba(247,148,30,0.1);border:1px solid rgba(247,148,30,0.2);font-size:10px;color:var(--orange);">Family Chat</span>
+                    <span style="padding:5px 8px;border-radius:100px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);font-size:10px;color:var(--green);">Instagram</span>
+                  </div>
+                </div>
+                <div class="phone-card" style="padding:10px;">
+                  <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Quick Share</div>
+                  <div style="font-size:11px;color:var(--text-2);line-height:1.8;">
+                    <div>&#10003; Text message sent</div>
+                    <div>&#10003; WhatsApp sent</div>
+                    <div>&#10003; Copy link ready</div>
+                  </div>
+                </div>
+                <div class="phone-bar" style="margin-top:auto;">
+                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                  <div class="phone-bar-item active"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="earn-slide" data-index="1">
+            <div class="earn-step">
+              <span class="earn-step-num">2</span>
+              They get 50% off for life
+            </div>
+            <div class="phone-mockup--small">
+              <div class="phone-notch"></div>
+              <div class="phone-screen-inner">
+                <div class="phone-header">
+                  <div class="phone-header-logo" style="color:var(--green);">Invite Accepted</div>
+                  <div class="phone-header-sub">Step 2: Friend discount unlocked</div>
+                </div>
+                <div class="phone-card" style="padding:10px;">
+                  <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Plan Price</div>
+                  <div style="display:flex;align-items:baseline;gap:8px;">
+                    <span style="font-size:11px;color:var(--text-3);text-decoration:line-through;">$19.95/mo</span>
+                    <span style="font-size:20px;font-weight:700;color:var(--green);font-family:'Geist Mono',monospace;">$9.97</span>
+                  </div>
+                  <div style="font-size:10px;color:var(--green);font-weight:600;margin-top:4px;">50% off for life</div>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <div class="phone-card" style="flex:1;padding:10px;">
+                    <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Savings</div>
+                    <div style="font-size:18px;font-weight:700;color:var(--orange);font-family:'Geist Mono',monospace;">$119</div>
+                    <div style="font-size:9px;color:var(--text-3);">per year</div>
+                  </div>
+                  <div class="phone-card" style="flex:1;padding:10px;">
+                    <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Status</div>
+                    <div style="font-size:12px;font-weight:700;color:var(--green);">ACTIVE</div>
+                    <div style="font-size:9px;color:var(--text-3);">Discount applied</div>
+                  </div>
+                </div>
+                <div class="phone-card" style="padding:10px;">
+                  <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Benefits Enabled</div>
+                  <div style="font-size:11px;color:var(--text-2);line-height:1.8;">
+                    <div>&#10003; Full AVANTI access</div>
+                    <div>&#10003; Family dashboard active</div>
+                    <div>&#10003; Renewal locked at 50% off</div>
+                  </div>
+                </div>
+                <div class="phone-bar" style="margin-top:auto;">
+                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+                  <div class="phone-bar-item active"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="earn-slide" data-index="2">
+            <div class="earn-step">
+              <span class="earn-step-num">3</span>
+              You earn 25% recurring
+            </div>
+            <div class="phone-mockup--small">
+              <div class="phone-notch"></div>
+              <div class="phone-screen-inner">
+                <div class="phone-header">
+                  <div class="phone-header-logo" style="color:var(--green);">Commissions</div>
+                  <div class="phone-header-sub">Step 3: Recurring income</div>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <div class="phone-card" style="flex:1;padding:10px;">
+                    <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">This Month</div>
+                    <div style="font-size:20px;font-weight:700;color:var(--green);font-family:'Geist Mono',monospace;">$142</div>
+                  </div>
+                  <div class="phone-card" style="flex:1;padding:10px;">
+                    <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Recurring</div>
+                    <div style="font-size:20px;font-weight:700;color:var(--orange);font-family:'Geist Mono',monospace;">25%</div>
+                  </div>
+                </div>
+                <div class="phone-card" style="padding:10px;">
+                  <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Recent Payouts</div>
+                  <div style="font-size:11px;color:var(--text-2);line-height:1.8;">
+                    <div>&#10003; Alex M. renewal <span style="color:var(--green);font-weight:600;">+$4.99</span></div>
+                    <div>&#10003; Coach Rivera renewal <span style="color:var(--green);font-weight:600;">+$4.99</span></div>
+                    <div>&#10003; Team Santos annual <span style="color:var(--green);font-weight:600;">+$24.99</span></div>
+                  </div>
+                </div>
+                <div class="phone-card" style="padding:10px;">
+                  <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Projection</div>
+                  <div style="font-size:12px;color:var(--text-2);line-height:1.6;">At this pace: <strong style="color:var(--orange);">$1,704/yr</strong> from referrals.</div>
+                </div>
+                <div class="phone-bar" style="margin-top:auto;">
+                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                  <div class="phone-bar-item active"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="earn-dots">
+          <span class="earn-dot active" data-index="0"></span>
+          <span class="earn-dot" data-index="1"></span>
+          <span class="earn-dot" data-index="2"></span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2069,7 +2628,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <div class="growth-header reveal">
       <div class="section-label">Who It's For</div>
       <h2 class="growth-headline">Built for Growth<br>at Every Level</h2>
-      <p class="growth-sub">From individual athletes to organizations — VAI scales with you.</p>
+      <p class="growth-sub">From solo athletes to full organizations — VAI grows with you.</p>
     </div>
 
     <div class="growth-grid">
@@ -2079,7 +2638,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <div class="growth-card-title">Individuals</div>
-        <div class="growth-card-desc">Develop skills. Build confidence. Train with intelligent guidance from AVANTI. Track your progress and see measurable improvement over time.</div>
+        <div class="growth-card-desc">Train with <span class="text-avanti">AVANTI</span>'s guidance. Track your progress. See real improvement — not just numbers on a screen.</div>
       </div>
 
       <!-- Families -->
@@ -2088,7 +2647,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         </div>
         <div class="growth-card-title">Families</div>
-        <div class="growth-card-desc">Support participation across the household. Manage schedules. Use Share &amp; Earn to turn the financial equation upside down.</div>
+        <div class="growth-card-desc">Manage everyone's schedules in one place. Use Share &amp; Earn to stop spending and start earning.</div>
       </div>
 
       <!-- Coaches -->
@@ -2097,7 +2656,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
         <div class="growth-card-title">Coaches &amp; Team Leaders</div>
-        <div class="growth-card-desc">Increase engagement without increasing your workload. Let AVANTI handle individual guidance while you focus on team strategy and development.</div>
+        <div class="growth-card-desc"><span class="text-avanti">AVANTI</span> handles individual guidance so you can focus on the bigger picture. Less admin, more coaching.</div>
       </div>
 
       <!-- Trainers -->
@@ -2106,7 +2665,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
         </div>
         <div class="growth-card-title">Trainers &amp; Fitness Pros</div>
-        <div class="growth-card-desc">Deliver AI-enhanced guidance your competitors can't match. Scale your impact. Earn recurring income through client referrals.</div>
+        <div class="growth-card-desc">Give your clients AI coaching between sessions. Scale your impact. Earn passive income through referrals.</div>
       </div>
 
       <!-- Small Business -->
@@ -2115,7 +2674,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
         </div>
         <div class="growth-card-title">Small Business Owners</div>
-        <div class="growth-card-desc">Manage payments and scheduling. Launch a branded website. Use built-in tools to run your operation without cobbling together 5 different apps.</div>
+        <div class="growth-card-desc">Payments, scheduling, branded website — all in one place. Stop juggling five apps to run your business.</div>
       </div>
 
       <!-- Mentors -->
@@ -2124,7 +2683,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
         </div>
         <div class="growth-card-title">Mentors &amp; Experts</div>
-        <div class="growth-card-desc">Monetize your knowledge. Expand your reach. Build a client base with AI-powered tools that make your expertise more accessible than ever.</div>
+        <div class="growth-card-desc">Share what you know. Reach more people. <span class="text-avanti">AVANTI</span> helps your clients even when you're not in the room.</div>
       </div>
     </div>
   </div>
@@ -2134,79 +2693,162 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <section class="mentor-section" id="mentor">
   <div class="container">
     <div class="mentor-inner reveal">
-      <div class="mentor-header">
-        <div class="section-label section-label--orange">VAI Mentor Plan</div>
-        <h2 class="mentor-headline">Run Your Operation With<br>Smart Intelligence</h2>
-        <p class="mentor-sub">Everything you need to manage, grow, and scale your business — powered by AI.</p>
-      </div>
-
-      <div class="mentor-features">
-        <div class="mentor-feat">
-          <div class="mentor-feat-icon">
-            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      <div class="mentor-grid">
+        <div class="mentor-left">
+          <div class="mentor-header">
+            <div class="section-label section-label--orange">VAI Mentor Plan</div>
+            <h2 class="mentor-headline">Run Your Operation.<br>Grow Your Business.</h2>
+            <p class="mentor-sub">Your clients. Your schedule. Your revenue. One dashboard.</p>
           </div>
-          <div>
-            <div class="mentor-feat-name">Payment Management</div>
-            <div class="mentor-feat-desc">Accept payments and manage transactions seamlessly</div>
+
+          <div class="mentor-features">
+            <!-- Group 1: Business Operations (matches mockup 1) -->
+            <div class="mentor-feature-group active" data-group="0">
+              <div class="mentor-feat">
+                <div class="mentor-feat-icon">
+                  <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                </div>
+                <div>
+                  <div class="mentor-feat-name">Payment Management</div>
+                  <div class="mentor-feat-desc">Accept payments directly — no third-party processor needed</div>
+                </div>
+              </div>
+              <div class="mentor-feat">
+                <div class="mentor-feat-icon">
+                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                  <div class="mentor-feat-name">Subscription Billing</div>
+                  <div class="mentor-feat-desc">Set it once, collect recurring revenue automatically</div>
+                </div>
+              </div>
+              <div class="mentor-feat">
+                <div class="mentor-feat-icon">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <div>
+                  <div class="mentor-feat-name">Calendar &amp; Scheduling</div>
+                  <div class="mentor-feat-desc">Clients book directly, you manage availability</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Group 2: Growth & AI (matches mockup 2) -->
+            <div class="mentor-feature-group" data-group="1">
+              <div class="mentor-feat">
+                <div class="mentor-feat-icon">
+                  <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                </div>
+                <div>
+                  <div class="mentor-feat-name">Revenue Dashboards</div>
+                  <div class="mentor-feat-desc">See your earnings, client count, and growth — in real time</div>
+                </div>
+              </div>
+              <div class="mentor-feat">
+                <div class="mentor-feat-icon">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                </div>
+                <div>
+                  <div class="mentor-feat-name">Custom Branded Website</div>
+                  <div class="mentor-feat-desc">Professional site that's ready when you are — no design skills needed</div>
+                </div>
+              </div>
+              <div class="mentor-feat">
+                <div class="mentor-feat-icon">
+                  <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <div>
+                  <div class="mentor-feat-name">AI-Enhanced Engagement</div>
+                  <div class="mentor-feat-desc"><span class="text-avanti">AVANTI</span> keeps your clients engaged between sessions</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mentor-dots">
+            <span class="mentor-dot active" data-index="0"></span>
+            <span class="mentor-dot" data-index="1"></span>
+          </div>
+
+          <div class="mentor-cta">
+            <a href="#pricing" class="btn-primary">
+              Get Mentor Plan
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
         </div>
 
-        <div class="mentor-feat">
-          <div class="mentor-feat-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div class="mentor-right">
+          <!-- Mockup 1: Business Operations -->
+          <div class="mentor-mockup-slide active" data-mockup="0">
+            <div class="phone-mockup--small">
+              <div class="phone-notch"></div>
+              <div class="phone-screen-inner">
+                <div class="phone-header">
+                  <div class="phone-header-logo" style="color:var(--orange);">Mentor</div>
+                  <div class="phone-header-sub">Business Operations</div>
+                </div>
+                <div class="phone-card">
+                  <div class="phone-card-label">Recent Payments</div>
+                  <div style="font-size:11px;color:var(--text-2);line-height:1.9;">
+                    <div style="display:flex;justify-content:space-between;"><span>Maria G.</span><span style="color:var(--green);font-weight:600;">+$49.95</span></div>
+                    <div style="display:flex;justify-content:space-between;"><span>Jake L.</span><span style="color:var(--green);font-weight:600;">+$49.95</span></div>
+                    <div style="display:flex;justify-content:space-between;"><span>Team Aces</span><span style="color:var(--green);font-weight:600;">+$199.00</span></div>
+                  </div>
+                </div>
+                <div class="phone-card" style="padding:10px;">
+                  <div class="phone-card-label">Today's Schedule</div>
+                  <div style="font-size:10px;color:var(--text-2);line-height:2;">
+                    <div><span style="color:var(--orange);font-weight:600;">9:00</span> — Private session (Jake)</div>
+                    <div><span style="color:var(--orange);font-weight:600;">11:30</span> — Group class</div>
+                    <div><span style="color:var(--orange);font-weight:600;">3:00</span> — Team Aces practice</div>
+                  </div>
+                </div>
+                <div class="phone-card" style="padding:10px;">
+                  <div class="phone-card-label">Active Subscriptions</div>
+                  <div style="font-size:18px;font-weight:700;color:var(--orange);font-family:'Geist Mono',monospace;">28</div>
+                  <div style="font-size:10px;color:var(--text-2);">clients &middot; $1,398/mo recurring</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <div class="mentor-feat-name">Subscription Billing</div>
-            <div class="mentor-feat-desc">Recurring revenue with automated billing cycles</div>
+
+          <!-- Mockup 2: Growth & AI -->
+          <div class="mentor-mockup-slide" data-mockup="1">
+            <div class="phone-mockup--small">
+              <div class="phone-notch"></div>
+              <div class="phone-screen-inner">
+                <div class="phone-header">
+                  <div class="phone-header-logo" style="color:var(--orange);">Mentor</div>
+                  <div class="phone-header-sub">Growth &amp; AI</div>
+                </div>
+                <div class="phone-card" style="padding:10px;">
+                  <div class="phone-card-label">Monthly Revenue</div>
+                  <div style="font-size:22px;font-weight:700;color:var(--green);font-family:'Geist Mono',monospace;">$4,280</div>
+                  <div style="font-size:10px;color:var(--green);">&#9650; 23% from last month</div>
+                  <div style="height:4px;background:var(--surface);border-radius:2px;margin-top:8px;overflow:hidden;">
+                    <div style="width:78%;height:100%;background:var(--green);border-radius:2px;"></div>
+                  </div>
+                </div>
+                <div class="phone-card" style="padding:10px;">
+                  <div class="phone-card-label">Your Website</div>
+                  <div style="background:var(--surface);border-radius:6px;padding:8px;margin-top:4px;">
+                    <div style="font-size:10px;font-weight:700;color:var(--text);">coachrivera.vai.app</div>
+                    <div style="font-size:9px;color:var(--text-3);margin-top:2px;">142 visits this week</div>
+                  </div>
+                </div>
+                <div class="phone-card" style="padding:10px;">
+                  <div class="phone-card-label"><span style="color:var(--green);font-weight:700;">AVANTI</span> Engagement</div>
+                  <div style="font-size:11px;color:var(--text-2);line-height:1.8;margin-top:4px;">
+                    <div>18 clients received AI tips today</div>
+                    <div>92% engagement rate</div>
+                    <div style="color:var(--green);font-weight:600;margin-top:4px;">&#10003; Clients stay active between sessions</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="mentor-feat">
-          <div class="mentor-feat-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-          <div>
-            <div class="mentor-feat-name">Calendar &amp; Scheduling</div>
-            <div class="mentor-feat-desc">Book sessions, manage availability, reduce no-shows</div>
-          </div>
-        </div>
-
-        <div class="mentor-feat">
-          <div class="mentor-feat-icon">
-            <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
-          </div>
-          <div>
-            <div class="mentor-feat-name">Revenue Dashboards</div>
-            <div class="mentor-feat-desc">Real-time earnings, client metrics, and growth analytics</div>
-          </div>
-        </div>
-
-        <div class="mentor-feat">
-          <div class="mentor-feat-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-          </div>
-          <div>
-            <div class="mentor-feat-name">Custom Branded Website</div>
-            <div class="mentor-feat-desc">Your own professional presence, built-in and ready</div>
-          </div>
-        </div>
-
-        <div class="mentor-feat">
-          <div class="mentor-feat-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          </div>
-          <div>
-            <div class="mentor-feat-name">AI-Enhanced Engagement</div>
-            <div class="mentor-feat-desc">AVANTI keeps your clients engaged between sessions</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mentor-cta">
-        <a href="#pricing" class="btn-primary">
-          Get Mentor Plan Now
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
       </div>
     </div>
   </div>
@@ -2236,47 +2878,41 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
     <div class="proof-header reveal">
       <div class="section-label">Testimonials</div>
-      <h2 class="proof-headline">Real People. Real Results.</h2>
+      <h2 class="proof-headline">What People Are Saying</h2>
     </div>
 
-    <div class="testimonials reveal">
-      <div class="glass-card glass-card--accent testimonial">
+    <div class="testimonial-carousel reveal">
+      <div class="testimonial-slide active">
         <div class="testimonial-quote">
-          AVANTI knew I had film review on Tuesday and a game Friday. It prepped me with specific reads to watch for and recovery tips for the week. My coach noticed the difference before I did.
+          AVANTI knew I had film review Tuesday and a game Friday. It prepped me with specific reads to study and recovery tips for the week. My coach noticed the difference before I did.
         </div>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">J</div>
-          <div>
-            <div class="testimonial-name">Jaxon D.</div>
-            <div class="testimonial-role">College Quarterback</div>
-          </div>
+          <span class="testimonial-name">Jaxon Davis</span><span>, </span><span class="testimonial-role-text">College Quarterback</span>
         </div>
       </div>
 
-      <div class="glass-card glass-card--accent testimonial">
+      <div class="testimonial-slide">
         <div class="testimonial-quote">
-          I shared VAI with six families in my son's soccer league. Within two months, the Share &amp; Earn commissions covered both my kids' registration fees. I went from spending to earning.
+          I shared VAI with six families in my son's soccer league. Two months later, the Share &amp; Earn commissions covered both my kids' registration fees. I went from spending to earning.
         </div>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">S</div>
-          <div>
-            <div class="testimonial-name">Sarah M.</div>
-            <div class="testimonial-role">Sports Parent</div>
-          </div>
+          <span class="testimonial-name">Sarah Miller</span><span>, </span><span class="testimonial-role-text">Parent</span>
         </div>
       </div>
 
-      <div class="glass-card glass-card--accent testimonial">
+      <div class="testimonial-slide">
         <div class="testimonial-quote">
-          The Mentor Plan replaced my scheduling app, my payment processor, and my client portal. One platform, one bill, and my clients get AI coaching between sessions. It's a no-brainer.
+          The Mentor Plan replaced my scheduling app, my payment processor, and my client portal. One platform, one bill, and my clients get AI coaching between sessions. I can't go back to juggling five tools.
         </div>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">M</div>
-          <div>
-            <div class="testimonial-name">Marcus T.</div>
-            <div class="testimonial-role">Personal Trainer</div>
-          </div>
+          <span class="testimonial-name">Marcus Torres</span><span>, </span><span class="testimonial-role-text">Personal Trainer</span>
         </div>
+      </div>
+
+      <div class="testimonial-dots">
+        <span class="t-dot active" data-index="0"></span>
+        <span class="t-dot" data-index="1"></span>
+        <span class="t-dot" data-index="2"></span>
       </div>
     </div>
   </div>
@@ -2288,15 +2924,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <div class="pricing-header reveal">
       <div class="section-label">Pricing</div>
       <h2 class="pricing-headline">Choose Your Plan</h2>
-      <p class="pricing-sub">Start free. Upgrade when you're ready. Every plan includes community access, messaging, and event discovery.</p>
+      <p class="pricing-sub">No contracts. No hidden fees. Start free and upgrade when it makes sense.</p>
+
+      <div class="pricing-toggle">
+        <span class="toggle-label active-label" data-period="monthly">Monthly</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="pricingToggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="toggle-label" data-period="yearly">Yearly <span class="toggle-save">Save 17%</span></span>
+      </div>
     </div>
 
     <div class="pricing-grid">
       <!-- FREE -->
       <div class="pricing-card reveal reveal-delay-1">
-        <div class="pricing-emoji-icon">&#9889;</div>
+        <div class="pricing-icon-box pricing-icon-box--basic">
+          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
         <div class="pricing-name">VAI BASIC</div>
-        <div class="pricing-tagline">Perfect for getting started and staying organized</div>
+        <div class="pricing-tagline">Stay organized and connected — for free</div>
         <div class="pricing-price">
           <span class="pricing-amount pricing-amount--free">Free</span>
         </div>
@@ -2337,19 +2984,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <!-- VAI+ (POPULAR) -->
       <div class="pricing-card pricing-card--popular reveal reveal-delay-2">
         <div class="pricing-popular-tag">MOST POPULAR</div>
-        <div class="pricing-emoji-icon">&#128293;</div>
-        <div class="pricing-name">VAI+</div>
-        <div class="pricing-tagline">For go-getters ready to accelerate progress</div>
-        <div class="pricing-price">
-          <span class="pricing-amount mono">$19.95</span>
-          <span class="pricing-period">/mo</span>
+        <div class="pricing-icon-box pricing-icon-box--plus">
+          <svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg>
         </div>
+        <div class="pricing-name">VAI+</div>
+        <div class="pricing-tagline">Smart coaching and deeper insights</div>
+        <div class="pricing-price">
+          <span class="pricing-amount mono price-vai-plus">$19.95</span>
+          <span class="pricing-period period-vai-plus">/mo</span>
+        </div>
+        <div class="pricing-savings" id="savingsPlus">Save $39.90/yr</div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
           <li class="pricing-features-header">Everything in Basic AND:</li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <strong style="color:var(--green)">AVANTI AI coach</strong>
+            <strong style="color:var(--green)"><span class="text-avanti">AVANTI</span> AI coach</strong>
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
@@ -2373,19 +3023,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
       <!-- MENTOR -->
       <div class="pricing-card pricing-card--mentor reveal reveal-delay-3">
-        <div class="pricing-emoji-icon">&#127942;</div>
-        <div class="pricing-name">VAI MENTOR</div>
-        <div class="pricing-tagline">For leaders &amp; organizations ready to scale</div>
-        <div class="pricing-price">
-          <span class="pricing-amount mono">$99.95</span>
-          <span class="pricing-period">/mo</span>
+        <div class="pricing-icon-box pricing-icon-box--mentor">
+          <svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 010-5C7 4 7 7 7 7"/><path d="M18 9h1.5a2.5 2.5 0 000-5C17 4 17 7 17 7"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0012 0V2z"/></svg>
         </div>
+        <div class="pricing-name">VAI MENTOR</div>
+        <div class="pricing-tagline">Run and grow your business</div>
+        <div class="pricing-price">
+          <span class="pricing-amount mono price-vai-mentor">$99.95</span>
+          <span class="pricing-period period-vai-mentor">/mo</span>
+        </div>
+        <div class="pricing-savings" id="savingsMentor">Save $203.45/yr</div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
           <li class="pricing-features-header">Everything in VAI+ AND:</li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <strong style="color:var(--orange)">AVANTI Business</strong>
+            <strong style="color:var(--orange)"><span class="text-avanti">AVANTI</span> Business</strong>
           </li>
           <li>
             <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
@@ -2424,7 +3077,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <span style="color:var(--green)">Unlock Opportunity.</span>
       </h2>
       <p class="closing-sub">
-        The tools are here. The AI is ready. The community is growing. And it starts for free.
+        Your next level starts here. And it's free.
       </p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
         <a href="#pricing" class="btn-primary">
@@ -2452,7 +3105,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           VAI
         </div>
         <p class="footer-desc">
-          AI-powered ecosystem for athletes, families, coaches, trainers, and communities. Train smarter. Grow stronger. Unlock opportunity.
+          Smart tools for athletes, coaches, trainers, and families. Train smarter. Grow stronger.
         </p>
         <div class="footer-social">
           <!-- Instagram -->
@@ -2609,7 +3262,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function step(now) {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       let current = Math.round(eased * target);
 
@@ -2622,6 +3274,114 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     requestAnimationFrame(step);
+  }
+
+  // ── Section 5: Share & Earn step-by-step mockups ──
+  const earnSlides = document.querySelectorAll('.earn-slide');
+  const earnDots = document.querySelectorAll('.earn-dot');
+  let earnIndex = 0;
+
+  function switchEarn(newIndex) {
+    earnSlides[earnIndex].classList.remove('active');
+    earnDots[earnIndex].classList.remove('active');
+    earnIndex = newIndex;
+    earnSlides[earnIndex].classList.add('active');
+    earnDots[earnIndex].classList.add('active');
+  }
+
+  if (earnSlides.length > 0 && earnSlides.length === earnDots.length) {
+    let earnTimer = setInterval(() => {
+      switchEarn((earnIndex + 1) % earnSlides.length);
+    }, 3000);
+
+    earnDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const nextIndex = parseInt(dot.dataset.index, 10);
+        if (Number.isNaN(nextIndex)) return;
+        clearInterval(earnTimer);
+        switchEarn(nextIndex);
+        earnTimer = setInterval(() => {
+          switchEarn((earnIndex + 1) % earnSlides.length);
+        }, 3000);
+      });
+    });
+  }
+
+  // ── Section 7: Mentor mockup/feature auto-switch ──
+  const mentorMockups = document.querySelectorAll('.mentor-mockup-slide');
+  const mentorGroups = document.querySelectorAll('.mentor-feature-group');
+  const mentorDots = document.querySelectorAll('.mentor-dot');
+  let mentorIndex = 0;
+
+  function switchMentor(newIndex) {
+    mentorMockups[mentorIndex].classList.remove('active');
+    mentorGroups[mentorIndex].classList.remove('active');
+    mentorDots[mentorIndex].classList.remove('active');
+    mentorIndex = newIndex;
+    mentorMockups[mentorIndex].classList.add('active');
+    mentorGroups[mentorIndex].classList.add('active');
+    mentorDots[mentorIndex].classList.add('active');
+  }
+
+  let mentorTimer = setInterval(() => {
+    switchMentor((mentorIndex + 1) % 2);
+  }, 5000);
+
+  mentorDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      clearInterval(mentorTimer);
+      switchMentor(parseInt(dot.dataset.index));
+      mentorTimer = setInterval(() => {
+        switchMentor((mentorIndex + 1) % 2);
+      }, 5000);
+    });
+  });
+
+  // ── Section 8: Testimonial carousel ──
+  const tSlides = document.querySelectorAll('.testimonial-slide');
+  const tDots = document.querySelectorAll('.t-dot');
+  let tIndex = 0;
+
+  function switchTestimonial(newIndex) {
+    tSlides[tIndex].classList.remove('active');
+    tDots[tIndex].classList.remove('active');
+    tIndex = newIndex;
+    tSlides[tIndex].classList.add('active');
+    tDots[tIndex].classList.add('active');
+  }
+
+  let tTimer = setInterval(() => {
+    switchTestimonial((tIndex + 1) % tSlides.length);
+  }, 5000);
+
+  tDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      clearInterval(tTimer);
+      switchTestimonial(parseInt(dot.dataset.index));
+      tTimer = setInterval(() => {
+        switchTestimonial((tIndex + 1) % tSlides.length);
+      }, 5000);
+    });
+  });
+
+  // ── Section 9: Pricing toggle ──
+  const pricingToggle = document.getElementById('pricingToggle');
+  const monthlyLabel = document.querySelector('[data-period="monthly"]');
+  const yearlyLabel = document.querySelector('[data-period="yearly"]');
+
+  if (pricingToggle) {
+    pricingToggle.addEventListener('change', () => {
+      const yearly = pricingToggle.checked;
+      document.querySelector('.price-vai-plus').textContent = yearly ? '$199.50' : '$19.95';
+      document.querySelector('.price-vai-mentor').textContent = yearly ? '$995.95' : '$99.95';
+      document.querySelector('.period-vai-plus').textContent = yearly ? '/yr' : '/mo';
+      document.querySelector('.period-vai-mentor').textContent = yearly ? '/yr' : '/mo';
+      document.querySelectorAll('.pricing-savings').forEach(el => {
+        el.classList.toggle('show', yearly);
+      });
+      monthlyLabel.classList.toggle('active-label', !yearly);
+      yearlyLabel.classList.toggle('active-label', yearly);
+    });
   }
 });
 </script>
