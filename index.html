@@ -128,6 +128,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   z-index: 1;
 }
 
+.hero,
+.intro-section,
+.cost-section,
+.avanti-section,
+.earn-section,
+.growth-section,
+.mentor-section,
+.proof-section,
+.pricing-section,
+.closing-section {
+  isolation: isolate;
+}
+
 .section-label {
   font-size: 10px;
   font-weight: 700;
@@ -390,6 +403,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero {
   padding: 130px 0 100px;
   position: relative;
+  background:
+    linear-gradient(180deg, rgba(12,10,9,0.86) 0%, rgba(12,10,9,0.92) 100%),
+    url(https://vai.app/wp-content/uploads/hero-grunge.jpg) center / cover no-repeat;
+  background-blend-mode: multiply, normal;
   overflow: hidden;
 }
 
@@ -398,7 +415,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: absolute;
   top: -200px; right: -200px;
   width: 800px; height: 800px;
+  z-index: 0;
   background: radial-gradient(circle, rgba(247,148,30,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url(https://vai.app/wp-content/uploads/showcase-bg-mask.png) bottom center / cover no-repeat;
+  opacity: 0.2;
   pointer-events: none;
 }
 
@@ -441,7 +468,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero-sub {
   font-size: 17px;
   font-weight: 400;
-  color: var(--text-2);
+  color: #DDD7D1;
   line-height: 1.7;
   max-width: 520px;
   margin-bottom: 36px;
@@ -500,6 +527,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+}
+
+.store-badges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.store-badges--center { justify-content: center; }
+.store-badges a {
+  display: inline-flex;
+  line-height: 0;
+  transition: transform 200ms var(--ease);
+}
+.store-badges a:hover { transform: translateY(-1px); }
+.store-badges img {
+  height: 44px;
+  width: auto;
+  display: block;
 }
 
 /* Phone Mockup */
@@ -648,12 +695,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .intro-section {
   padding: 100px 0;
   position: relative;
+  background:
+    linear-gradient(180deg, rgba(12,10,9,0.9) 0%, rgba(12,10,9,0.95) 100%),
+    url(https://vai.app/wp-content/uploads/testimonial-bg.jpg) center / cover no-repeat;
+  background-blend-mode: multiply, normal;
+  overflow: hidden;
 }
 
 .intro-section::before {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 0;
   background: linear-gradient(180deg,
     transparent 0%,
     rgba(247,148,30,0.04) 30%,
@@ -661,6 +714,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     rgba(247,148,30,0.04) 70%,
     transparent 100%
   );
+  pointer-events: none;
+}
+.intro-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.14;
   pointer-events: none;
 }
 
@@ -704,7 +765,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: relative;
   background:
     linear-gradient(180deg, rgba(250,249,247,0.72) 0%, rgba(255,247,237,0.68) 100%),
-    url(assets/gray-distressed-bg-1.jpg) center / cover no-repeat;
+    url(https://vai.app/wp-content/uploads/gray-distressed-bg-1.jpg) center / cover no-repeat;
   background-blend-mode: multiply, normal;
   color: #1C1917;
   overflow: hidden;
@@ -798,7 +859,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 28px 20px;
   background:
     linear-gradient(180deg, rgba(255,255,255,0.74), rgba(255,255,255,0.66)),
-    url(assets/gray-distressed-bg-1.jpg) center / cover no-repeat;
+    url(https://vai.app/wp-content/uploads/gray-distressed-bg-1.jpg) center / cover no-repeat;
   background-blend-mode: multiply, normal;
   border: 1px solid #E7E5E4;
   border-radius: var(--radius);
@@ -836,6 +897,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .avanti-section {
   padding: 100px 0;
   position: relative;
+  background:
+    linear-gradient(180deg, rgba(12,10,9,0.95) 0%, rgba(12,10,9,0.98) 100%),
+    url(https://vai.app/wp-content/uploads/hero-grunge.jpg) center / cover no-repeat;
+  background-blend-mode: multiply, normal;
+  overflow: hidden;
 }
 
 .avanti-section::before {
@@ -844,8 +910,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   bottom: -100px; left: 50%;
   transform: translateX(-50%);
   width: 600px; height: 600px;
+  z-index: 0;
   background: radial-gradient(circle, rgba(247,148,30,0.05) 0%, transparent 70%);
   pointer-events: none;
+}
+.avanti-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url(https://vai.app/wp-content/uploads/showcase-bg-mask.png) bottom center / cover no-repeat;
+  opacity: 0.16;
+  pointer-events: none;
+}
+.avanti-section .section-label { color: var(--orange); }
+.avanti-section .glass-card {
+  background: #191613;
+  border-color: rgba(255,255,255,0.16);
+}
+.avanti-section .avanti-sub,
+.avanti-section .avanti-feature-desc,
+.avanti-section .avanti-equalizer {
+  color: #DDD7D1;
 }
 
 .avanti-header {
@@ -870,12 +956,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .avanti-equalizer {
-  background: rgba(52,211,153,0.06);
-  border: 1px solid rgba(52,211,153,0.15);
+  background: #171614;
+  border: 1px solid rgba(52,211,153,0.22);
   border-radius: var(--radius);
   padding: 20px 28px;
   font-size: 15px;
-  color: var(--text-2);
+  color: #DDD7D1;
   line-height: 1.7;
   text-align: left;
   max-width: 650px;
@@ -1062,6 +1148,30 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 ══════════════════════════════════════════ */
 .growth-section {
   padding: 100px 0;
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(13,11,10,0.95) 0%, rgba(12,10,9,0.98) 100%),
+    url(https://vai.app/wp-content/uploads/testimonial-bg.jpg) center / cover no-repeat;
+  background-blend-mode: multiply, normal;
+  overflow: hidden;
+}
+.growth-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url(https://vai.app/wp-content/uploads/showcase-bg-mask.png) center / cover no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.growth-section .section-label { color: var(--orange); }
+.growth-section .glass-card {
+  background: #191613;
+  border-color: rgba(255,255,255,0.16);
+}
+.growth-section .growth-sub,
+.growth-section .growth-card-desc {
+  color: #DDD7D1;
 }
 
 .growth-header {
@@ -1135,6 +1245,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .mentor-section {
   padding: 100px 0;
   position: relative;
+  background:
+    linear-gradient(180deg, rgba(12,10,9,0.95) 0%, rgba(12,10,9,0.98) 100%),
+    url(https://vai.app/wp-content/uploads/hero-grunge.jpg) center / cover no-repeat;
+  background-blend-mode: multiply, normal;
+  overflow: hidden;
 }
 
 .mentor-section::before {
@@ -1143,17 +1258,35 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: 700px; height: 500px;
+  z-index: 0;
   background: radial-gradient(circle, rgba(247,148,30,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.mentor-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url(https://vai.app/wp-content/uploads/showcase-bg-mask.png) center / cover no-repeat;
+  opacity: 0.14;
   pointer-events: none;
 }
 
 .mentor-inner {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #171412;
+  border: 1px solid rgba(255,255,255,0.16);
   border-radius: var(--radius-lg);
   padding: 60px;
   position: relative;
   overflow: hidden;
+}
+.mentor-section .mentor-feat {
+  background: #1D1916;
+  border-color: rgba(255,255,255,0.16);
+}
+.mentor-section .mentor-sub,
+.mentor-section .mentor-feat-desc {
+  color: #DDD7D1;
 }
 .mentor-inner::before {
   content: '';
@@ -1240,7 +1373,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 ══════════════════════════════════════════ */
 .proof-section {
   padding: 100px 0;
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(12,10,9,0.94) 0%, rgba(12,10,9,0.98) 100%),
+    url(https://vai.app/wp-content/uploads/testimonial-bg.jpg) center / cover no-repeat;
+  background-blend-mode: multiply, normal;
+  overflow: hidden;
 }
+.proof-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url(https://vai.app/wp-content/uploads/showcase-bg-mask.png) center / cover no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.proof-section .section-label { color: var(--orange); }
 
 .proof-stats {
   display: grid;
@@ -1252,8 +1401,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .proof-stat {
   text-align: center;
   padding: 24px 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #1B1714;
+  border: 1px solid rgba(255,255,255,0.16);
   border-radius: var(--radius);
 }
 
@@ -1269,7 +1418,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .proof-stat-label {
   font-size: 12px;
   font-weight: 500;
-  color: var(--text-3);
+  color: #DDD7D1;
 }
 
 .proof-header {
@@ -1299,7 +1448,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .testimonial-quote {
   font-size: 15px;
-  color: var(--text-2);
+  color: #E7E2DD;
   line-height: 1.75;
   font-style: italic;
   flex: 1;
@@ -1362,6 +1511,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .pricing-section {
   padding: 100px 0;
   position: relative;
+  background:
+    linear-gradient(180deg, rgba(12,10,9,0.95) 0%, rgba(12,10,9,0.99) 100%),
+    url(https://vai.app/wp-content/uploads/gray-distressed-bg-1.jpg) center / cover no-repeat;
+  background-blend-mode: multiply, normal;
+  overflow: hidden;
 }
 
 .pricing-section::before {
@@ -1370,9 +1524,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   bottom: 0; left: 50%;
   transform: translateX(-50%);
   width: 800px; height: 400px;
+  z-index: 0;
   background: radial-gradient(ellipse, rgba(247,148,30,0.04) 0%, transparent 70%);
   pointer-events: none;
 }
+.pricing-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url(https://vai.app/wp-content/uploads/showcase-bg-mask.png) bottom center / cover no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+}
+.pricing-section .section-label { color: var(--orange); }
 
 .pricing-header {
   text-align: center;
@@ -1402,8 +1567,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .pricing-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #181512;
+  border: 1px solid rgba(255,255,255,0.16);
   border-radius: var(--radius-lg);
   padding: 40px 28px 32px;
   position: relative;
@@ -1415,16 +1580,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .pricing-card--popular {
-  border-color: var(--border-g);
-  background: rgba(52,211,153,0.04);
+  border-color: rgba(52,211,153,0.45);
+  background: #13201A;
 }
 .pricing-card--popular:hover {
   border-color: var(--green);
 }
 
 .pricing-card--mentor {
-  border-color: var(--border-o);
-  background: rgba(247,148,30,0.03);
+  border-color: rgba(247,148,30,0.45);
+  background: #241A12;
+}
+.pricing-section .pricing-sub,
+.pricing-section .pricing-features li,
+.pricing-section .toggle-label {
+  color: #D9D2CB;
+}
+.pricing-section .pricing-tagline {
+  color: #BCB4AC;
+}
+.pricing-section .pricing-features li.pricing-features-header {
+  color: #BCB4AC;
+}
+.pricing-section .pricing-period {
+  color: #BCB4AC;
+}
+.pricing-section .toggle-slider {
+  background: #2A2623;
+  border-color: rgba(255,255,255,0.2);
 }
 .pricing-card--mentor:hover {
   border-color: var(--orange);
@@ -1598,6 +1781,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 120px 0 100px;
   text-align: center;
   position: relative;
+  overflow: hidden;
 }
 
 .closing-section::before {
@@ -1606,7 +1790,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   top: 0; left: 50%;
   transform: translateX(-50%);
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(247,148,30,0.07) 0%, transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+.closing-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.16;
   pointer-events: none;
 }
 
@@ -1620,7 +1812,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .closing-sub {
   font-size: 18px;
-  color: var(--text-2);
+  color: #DDD7D1;
   line-height: 1.7;
   max-width: 560px;
   margin: 0 auto 40px;
@@ -1779,7 +1971,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .intro-left, .intro-right {
   font-size: 16px;
-  color: var(--text-2);
+  color: #DDD7D1;
   line-height: 1.8;
 }
 .intro-left strong, .intro-right strong { color: var(--text); font-weight: 600; }
@@ -1857,9 +2049,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 100px 0;
   position: relative;
   background:
-    linear-gradient(180deg, rgba(255,250,245,0.74) 0%, rgba(255,245,235,0.68) 100%),
-    url(assets/gray-distressed-bg-1.jpg) center / cover no-repeat;
-  background-blend-mode: multiply, normal;
+    linear-gradient(180deg, rgba(255,252,248,0.9) 0%, rgba(255,246,237,0.86) 100%),
+    url(https://vai.app/wp-content/uploads/testimonial-bg.jpg) center / cover no-repeat;
+  background-blend-mode: normal, multiply;
   color: #1C1917;
   overflow: hidden;
 }
@@ -1867,7 +2059,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 12% 12%, rgba(247,148,30,0.15), transparent 40%);
+  z-index: 0;
+  background: radial-gradient(circle at 14% 14%, rgba(247,148,30,0.16), transparent 42%);
+  pointer-events: none;
+}
+.earn-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url(https://vai.app/wp-content/uploads/showcase-bg-mask.png) bottom center / cover no-repeat;
+  opacity: 0.18;
   pointer-events: none;
 }
 .earn-section .container {
@@ -1897,11 +2099,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px;
 }
 .earn-left .earn-example {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.74), rgba(255,255,255,0.66)),
-    url(assets/gray-distressed-bg-1.jpg) center / cover no-repeat;
-  background-blend-mode: multiply, normal;
-  border: 1px solid #E7E5E4;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+  border: 1px solid rgba(231,229,228,0.92);
   border-radius: var(--radius); padding: 20px 24px;
 }
 .earn-left .earn-example-role {
@@ -1958,11 +2157,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: var(--orange);
 }
 .earn-section .earn-step {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.76), rgba(255,255,255,0.68)),
-    url(assets/gray-distressed-bg-1.jpg) center / cover no-repeat;
-  background-blend-mode: multiply, normal;
-  border: 1px solid #E7E5E4;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.9));
+  border: 1px solid rgba(231,229,228,0.9);
   color: #44403C;
 }
 .earn-section .earn-step-num {
@@ -2048,7 +2244,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   opacity: 1; position: relative;
 }
 .testimonial-slide .testimonial-quote {
-  font-size: 18px; color: var(--text-2); line-height: 1.8;
+  font-size: 18px; color: #E7E2DD; line-height: 1.8;
   font-style: italic; margin-bottom: 24px;
   position: relative; padding-top: 32px;
 }
@@ -2197,6 +2393,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <a href="#pricing" class="text-link">
             See Plans
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="store-badges">
+          <a href="https://apps.apple.com/us/app/vai-from-next-level-athlete/id6447384009" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
+            <img src="https://vai.app/wp-content/uploads/app-store-download-1.png" alt="Download on the App Store">
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.nla.vaiapp" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+            <img src="https://vai.app/wp-content/uploads/google-play-badge-1-1.png" alt="Get it on Google Play">
           </a>
         </div>
       </div>
@@ -2461,8 +2665,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             <p class="earn-example-text">Share with your <strong>existing clients</strong>. You earn <strong>recurring revenue on top of coaching income</strong> — without lifting a finger.</p>
           </div>
           <div class="earn-example">
-            <div class="earn-example-role">Athlete</div>
-            <p class="earn-example-text">A 15-year-old shares with <strong>teammates and school friends</strong>. That's <strong>gear money, camp money, travel money</strong> — earned by a kid, not spent by a parent.</p>
+            <div class="earn-example-role">Gym Owner</div>
+            <p class="earn-example-text">Share VAI with your <strong>member base and trainers</strong>. Recurring referral payouts become <strong>new monthly revenue for your gym</strong> — without adding classes or overhead.</p>
           </div>
         </div>
 
@@ -3086,6 +3290,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </a>
         <a href="#pricing" class="btn-secondary">
           Start Free
+        </a>
+      </div>
+      <div class="store-badges store-badges--center">
+        <a href="https://apps.apple.com/us/app/vai-from-next-level-athlete/id6447384009" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
+          <img src="https://vai.app/wp-content/uploads/app-store-download-1.png" alt="Download on the App Store">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.nla.vaiapp" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+          <img src="https://vai.app/wp-content/uploads/google-play-badge-1-1.png" alt="Get it on Google Play">
         </a>
       </div>
     </div>
