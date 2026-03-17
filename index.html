@@ -483,10 +483,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .pillar {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   padding: 14px;
-  background: var(--surface);
+  background: rgba(0,0,0,0.73);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   transition: border-color 200ms var(--ease);
@@ -1316,7 +1316,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .mentor-sub {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text-2);
   line-height: 1.7;
 }
@@ -1330,7 +1330,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .mentor-feat {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
   padding: 20px;
   background: var(--surface2);
@@ -1357,12 +1357,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .mentor-feat-name {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   margin-bottom: 4px;
 }
 .mentor-feat-desc {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-2);
   line-height: 1.5;
 }
@@ -1378,7 +1378,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    SECTION 8 — SOCIAL PROOF
 ══════════════════════════════════════════ */
 .proof-section {
-  padding: 100px 0;
+  padding: 200px 0;
   position: relative;
   background:
     linear-gradient(180deg, rgba(12,10,9,0.94) 0%, rgba(12,10,9,0.98) 100%),
@@ -1859,7 +1859,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .footer-desc {
   font-size: 13px;
-  color: var(--text-3);
+  color: #878797;
   line-height: 1.7;
   margin-bottom: 20px;
 }
@@ -1895,7 +1895,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: #878797;
   margin-bottom: 16px;
 }
 
@@ -1904,6 +1904,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.footer-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
 .footer-links a {
@@ -2036,7 +2041,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-radius: 28px;
   border: none;
   background: transparent;
-  box-shadow: 0 14px 36px rgba(0,0,0,0.4);
 }
 .phone-mockup--small .phone-screenshot {
   border-radius: 24px;
@@ -2158,10 +2162,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .earn-right {
   display: flex; flex-direction: column; gap: 16px;
+  width: 100%;
+  max-width: 340px;
+  justify-self: center;
+  align-self: center;
+  align-items: center;
 }
 .earn-carousel {
   position: relative;
   min-height: 560px;
+  width: 100%;
+  margin: 0 auto;
 }
 .earn-slide {
   position: absolute;
@@ -2399,7 +2410,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     </ul>
 
     <div class="nav-right">
-      <a href="#" class="nav-login">Log In</a>
+      <a href="https://gameday.vai.app/auth/login" class="nav-login">Log In</a>
       <a href="#pricing" class="nav-cta">Get Started</a>
     </div>
 
@@ -2416,7 +2427,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   <a href="#pricing" onclick="document.getElementById('mobileMenu').classList.remove('open')">Pricing</a>
   <a href="#avanti" class="nav-link--green" onclick="document.getElementById('mobileMenu').classList.remove('open')">AVANTI</a>
   <a href="#earn" onclick="document.getElementById('mobileMenu').classList.remove('open')">Share &amp; Earn</a>
-  <a href="#" onclick="document.getElementById('mobileMenu').classList.remove('open')">Log In</a>
+  <a href="https://gameday.vai.app/auth/login" onclick="document.getElementById('mobileMenu').classList.remove('open')">Log In</a>
   <a href="#pricing" class="nav-cta" onclick="document.getElementById('mobileMenu').classList.remove('open')">Get Started</a>
 </div>
 
@@ -2441,7 +2452,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </p>
 
         <div class="hero-ctas">
-          <a href="#pricing" class="btn-primary">
+          <a href="https://gameday.vai.app/auth/login?screen_hint=signup" class="btn-primary">
             Get Started Free
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -2656,7 +2667,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
 
         <div class="earn-cta">
-          <a href="#pricing" class="btn-primary">
+          <a href="https://vai.app/share" class="btn-primary">
             Learn More About Share &amp; Earn
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -2860,7 +2871,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           </div>
 
           <div class="mentor-cta">
-            <a href="#pricing" class="btn-primary">
+            <a href="https://vai.app/share/partner-program" class="btn-primary">
               Get Mentor Plan
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
@@ -2931,25 +2942,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <!-- ══════════════ SECTION 8: SOCIAL PROOF ══════════════ -->
 <section class="proof-section" id="proof">
   <div class="container">
-    <div class="proof-stats reveal">
-      <div class="proof-stat">
-        <div class="proof-stat-num mono">10K+</div>
-        <div class="proof-stat-label">Active Users</div>
-      </div>
-      <div class="proof-stat">
-        <div class="proof-stat-num mono">40+</div>
-        <div class="proof-stat-label">Sports Supported</div>
-      </div>
-      <div class="proof-stat">
-        <div class="proof-stat-num mono">250K+</div>
-        <div class="proof-stat-label">Sessions Completed</div>
-      </div>
-      <div class="proof-stat">
-        <div class="proof-stat-num mono">$85K+</div>
-        <div class="proof-stat-label">Earned by Users</div>
-      </div>
-    </div>
-
     <div class="proof-header reveal">
       <div class="section-label">Testimonials</div>
       <h2 class="proof-headline">What People Are Saying</h2>
@@ -3052,7 +3044,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             Customizable profile
           </li>
         </ul>
-        <a href="#" class="pricing-btn pricing-btn--default">Start Free</a>
+        <a href="https://gameday.vai.app/auth/login?screen_hint=signup" class="pricing-btn pricing-btn--default">Start Free</a>
       </div>
 
       <!-- VAI+ (POPULAR) -->
@@ -3092,7 +3084,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             Unlimited groups
           </li>
         </ul>
-        <a href="#" class="pricing-btn pricing-btn--green">Get VAI+</a>
+        <a href="https://vai.app/share/partner-program?program_type=plus" class="pricing-btn pricing-btn--green">Get VAI+</a>
       </div>
 
       <!-- MENTOR -->
@@ -3135,7 +3127,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             Rebates on processing fees
           </li>
         </ul>
-        <a href="#" class="pricing-btn pricing-btn--orange">Get Mentor</a>
+        <a href="https://vai.app/share/partner-program" class="pricing-btn pricing-btn--orange">Get Mentor</a>
       </div>
     </div>
   </div>
@@ -3158,7 +3150,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           Pick a Plan
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href="#pricing" class="btn-secondary">
+        <a href="https://gameday.vai.app/auth/login?screen_hint=signup" class="btn-secondary">
           Start Free
         </a>
       </div>
@@ -3186,21 +3178,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           Smart tools for athletes, coaches, trainers, and families. Train smarter. Grow stronger.
         </p>
         <div class="footer-social">
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/profile.php?id=61553009087165" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+              <path d="M9 8a2 2 0 0 1 2-2h3"/>
+              <path d="M10 13h4"/>
+              <path d="M12 22v-9"/>
+            </svg>
+          </a>
           <!-- Instagram -->
-          <a href="#" aria-label="Instagram">
+          <a href="https://www.instagram.com/vaiappofficial" aria-label="Instagram">
             <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
           <!-- X/Twitter -->
-          <a href="#" aria-label="X">
+          <a href="https://x.com/VAIAPPOFFICIAL" aria-label="X">
             <svg viewBox="0 0 24 24"><path d="M4 4l11.733 16H20L8.267 4H4z"/><path d="M4 20l6.768-6.768"/><path d="M20 4l-6.768 6.768"/></svg>
-          </a>
-          <!-- TikTok -->
-          <a href="#" aria-label="TikTok">
-            <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
-          </a>
-          <!-- YouTube -->
-          <a href="#" aria-label="YouTube">
-            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
           </a>
         </div>
       </div>
@@ -3209,43 +3201,43 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="footer-col-title">Product</div>
         <ul class="footer-links">
           <li><a href="#avanti">AVANTI AI</a></li>
-          <li><a href="#earn">Share &amp; Earn</a></li>
+          <li><a href="https://vai.app/share">Share &amp; Earn</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#mentor">Mentor Plan</a></li>
-          <li><a href="#">Download App</a></li>
+          <li><a href="https://vai.app/share/partner-program">Mentor Plan</a></li>
+          <li><a href="https://vai.app/share#calculator">Calculator</a></li>
         </ul>
       </div>
 
       <div>
         <div class="footer-col-title">Community</div>
         <ul class="footer-links">
-          <li><a href="#">Athletes</a></li>
-          <li><a href="#">Coaches</a></li>
-          <li><a href="#">Trainers</a></li>
-          <li><a href="#">Organizations</a></li>
-          <li><a href="#">Blog</a></li>
+          <li><a href="#growth">Athletes</a></li>
+          <li><a href="#growth">Coaches</a></li>
+          <li><a href="#growth">Trainers</a></li>
+          <li><a href="#mentor">Organizations</a></li>
         </ul>
       </div>
 
-      <div>
-        <div class="footer-col-title">Company</div>
-        <ul class="footer-links">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Press</a></li>
-          <li><a href="#">Support</a></li>
-        </ul>
+      <div class="footer-stack">
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="mailto:support@vai.app">Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Get the App</div>
+          <ul class="footer-links">
+            <li><a href="https://apps.apple.com/us/app/vai-from-next-level-athlete/id6447384009">iOS App Store</a></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.nla.vaiapp">Google Play</a></li>
+          </ul>
+        </div>
       </div>
+
     </div>
 
     <div class="footer-bottom">
       <span>&copy; 2026 VAI. All rights reserved.</span>
-      <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Cookie Policy</a>
-      </div>
     </div>
   </div>
 </footer>
