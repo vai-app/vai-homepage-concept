@@ -294,7 +294,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .nav-logo-img {
-  height: 30px;
+  height: 39px;
   width: auto;
   filter: brightness(1.1);
 }
@@ -558,10 +558,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .phone-mockup {
-  width: 280px;
+  width: 259px;
   height: 560px;
   background: #1A1714;
-  border-radius: 36px;
+  border-radius: 40px;
   border: 2px solid rgba(255,255,255,0.1);
   position: relative;
   overflow: hidden;
@@ -588,6 +588,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+.phone-screen--image {
+  display: block;
+  gap: 0;
+  padding: 0;
+  overflow: visible;
 }
 
 .phone-header {
@@ -685,7 +691,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero { padding: 110px 0 60px; }
   .hero-grid { grid-template-columns: 1fr; gap: 48px; }
   .hero-visual { order: -1; }
-  .phone-mockup { width: 240px; height: 480px; }
+  .phone-mockup { width: 222px; height: 480px; }
   .hero-pillars { grid-template-columns: 1fr; }
 }
 
@@ -1849,7 +1855,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--text);
   margin-bottom: 14px;
 }
-.footer-logo svg { width: 28px; height: 28px; }
+.footer-logo-img { height: 48px; width: auto; display: block; }
 
 .footer-desc {
   font-size: 13px;
@@ -1993,10 +1999,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .intro-header { text-align: center; max-width: 700px; margin: 0 auto; }
 
 .phone-mockup--small {
-  width: 240px;
+  width: 222px;
   height: 480px;
   background: #1A1714;
-  border-radius: 32px;
+  border-radius: 36px;
   border: 2px solid rgba(255,255,255,0.1);
   position: relative;
   overflow: hidden;
@@ -2013,6 +2019,41 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .phone-mockup--small .phone-screen-inner {
   padding: 36px 14px 14px; height: 100%;
   display: flex; flex-direction: column; gap: 10px;
+}
+.phone-screen-inner--image {
+  display: block;
+  gap: 0;
+  padding: 0;
+  overflow: visible;
+}
+.phone-screenshot {
+  --ios-safe-crop: 0px;
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 28px;
+  border: none;
+  background: transparent;
+  box-shadow: 0 14px 36px rgba(0,0,0,0.4);
+}
+.phone-mockup--small .phone-screenshot {
+  border-radius: 24px;
+}
+.phone-mockup.mockup-image-only,
+.phone-mockup--small.mockup-image-only {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+.mockup-image-only .phone-notch {
+  display: none;
+}
+.mockup-image-only .phone-screen,
+.mockup-image-only .phone-screen-inner {
+  padding: 0;
 }
 
 @media (max-width: 900px) {
@@ -2184,16 +2225,29 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .mentor-left .mentor-header {
   text-align: left; margin-bottom: 32px;
 }
-.mentor-features { display: block; margin-bottom: 24px; }
-
-.mentor-feature-group {
-  opacity: 0; max-height: 0; overflow: hidden;
-  transition: opacity 0.5s ease, max-height 0.5s ease;
+.mentor-features {
+  position: relative;
+  min-height: 132px;
+  margin-bottom: 24px;
 }
-.mentor-feature-group.active {
-  opacity: 1; max-height: 500px;
+.mentor-features .mentor-feat {
+  position: absolute;
+  inset: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: border-color 220ms var(--ease), background 220ms var(--ease), transform 200ms var(--ease);
 }
-.mentor-feature-group .mentor-feat { margin-bottom: 12px; }
+.mentor-features .mentor-feat:hover {
+  border-color: var(--border-o);
+}
+.mentor-features .mentor-feat.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
 
 .mentor-right {
   position: relative; min-height: 520px;
@@ -2225,6 +2279,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .mentor-grid { grid-template-columns: 1fr; }
   .mentor-right { min-height: 480px; }
   .mentor-left .mentor-header { text-align: center; }
+  .mentor-features { min-height: 154px; }
 }
 
 /* ── SECTION 8: TESTIMONIAL CAROUSEL ── */
@@ -2407,49 +2462,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
       <!-- Phone Mockup -->
       <div class="hero-visual">
-        <div class="phone-mockup">
+        <div class="phone-mockup mockup-image-only">
           <div class="phone-notch"></div>
-          <div class="phone-screen">
-            <div class="phone-header">
-              <div class="phone-header-logo">VAI</div>
-              <div class="phone-header-sub">Your Athletic Ecosystem</div>
-            </div>
-
-            <div class="phone-avanti">
-              <div class="phone-avanti-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
-              </div>
-              <div class="phone-avanti-text">
-                <strong>AVANTI:</strong> Practice at 4 PM. Hydrate now — 10-min dynamic warm-up recommended.
-              </div>
-            </div>
-
-            <div class="phone-card">
-              <div class="phone-card-label">Weekly Progress</div>
-              <div class="phone-card-value">87<span style="font-size:14px;color:var(--text-3)">/100</span></div>
-              <div class="phone-card-desc">Up 12% from last week</div>
-            </div>
-
-            <div class="phone-card">
-              <div class="phone-card-label">Share &amp; Earn</div>
-              <div class="phone-card-value phone-card-value--green">$142.50</div>
-              <div class="phone-card-desc">This month &middot; 6 referrals</div>
-            </div>
-
-            <div class="phone-bar">
-              <div class="phone-bar-item active">
-                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-              </div>
-              <div class="phone-bar-item">
-                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </div>
-              <div class="phone-bar-item">
-                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-              </div>
-              <div class="phone-bar-item">
-                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </div>
-            </div>
+          <div class="phone-screen phone-screen--image">
+            <img class="phone-screenshot" src="assets/avanti.jpeg" alt="AVANTI app home screen">
           </div>
         </div>
       </div>
@@ -2512,41 +2528,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
 
       <div class="intro-center">
-        <div class="phone-mockup--small">
+        <div class="phone-mockup--small mockup-image-only">
           <div class="phone-notch"></div>
-          <div class="phone-screen-inner">
-            <div class="phone-header">
-              <div class="phone-header-logo">VAI</div>
-              <div class="phone-header-sub">Dashboard</div>
-            </div>
-            <div class="phone-card">
-              <div class="phone-card-label">Today's Focus</div>
-              <div class="phone-card-title" style="font-size:12px;color:var(--orange);">Speed &amp; Agility</div>
-              <div class="phone-card-desc">3 drills queued by <span style="color:var(--green);font-weight:600;">AVANTI</span></div>
-            </div>
-            <div style="display:flex;gap:8px;">
-              <div class="phone-card" style="flex:1;padding:10px;">
-                <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Sessions</div>
-                <div style="font-size:18px;font-weight:700;color:var(--orange);font-family:'Geist Mono',monospace;">24</div>
-              </div>
-              <div class="phone-card" style="flex:1;padding:10px;">
-                <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Earned</div>
-                <div style="font-size:18px;font-weight:700;color:var(--green);font-family:'Geist Mono',monospace;">$86</div>
-              </div>
-            </div>
-            <div class="phone-card" style="padding:10px;">
-              <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Weekly Progress</div>
-              <div style="height:6px;background:var(--surface);border-radius:3px;overflow:hidden;">
-                <div style="width:73%;height:100%;background:linear-gradient(90deg,var(--orange),var(--green));border-radius:3px;"></div>
-              </div>
-              <div style="font-size:10px;color:var(--text-2);margin-top:4px;">73% of weekly goal</div>
-            </div>
-            <div class="phone-bar" style="margin-top:auto;">
-              <div class="phone-bar-item active"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
-              <div class="phone-bar-item"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-              <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-              <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-            </div>
+          <div class="phone-screen-inner phone-screen-inner--image">
+            <img class="phone-screenshot" src="assets/quick_actions.jpeg" alt="VAI quick actions screen">
           </div>
         </div>
       </div>
@@ -2685,39 +2670,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
               <span class="earn-step-num">1</span>
               Share your link
             </div>
-            <div class="phone-mockup--small">
+            <div class="phone-mockup--small mockup-image-only">
               <div class="phone-notch"></div>
-              <div class="phone-screen-inner">
-                <div class="phone-header">
-                  <div class="phone-header-logo" style="color:var(--green);">Share &amp; Earn</div>
-                  <div class="phone-header-sub">Step 1: Send your link</div>
-                </div>
-                <div class="phone-card">
-                  <div class="phone-card-label">Your Link</div>
-                  <div style="background:var(--surface);border-radius:6px;padding:8px 10px;font-size:11px;color:var(--text-2);font-family:'Geist Mono',monospace;">vai.app/r/yourname</div>
-                </div>
-                <div class="phone-card" style="padding:10px;">
-                  <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Share To</div>
-                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
-                    <span style="padding:5px 8px;border-radius:100px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);font-size:10px;color:var(--green);">Team Group</span>
-                    <span style="padding:5px 8px;border-radius:100px;background:rgba(247,148,30,0.1);border:1px solid rgba(247,148,30,0.2);font-size:10px;color:var(--orange);">Family Chat</span>
-                    <span style="padding:5px 8px;border-radius:100px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);font-size:10px;color:var(--green);">Instagram</span>
-                  </div>
-                </div>
-                <div class="phone-card" style="padding:10px;">
-                  <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Quick Share</div>
-                  <div style="font-size:11px;color:var(--text-2);line-height:1.8;">
-                    <div>&#10003; Text message sent</div>
-                    <div>&#10003; WhatsApp sent</div>
-                    <div>&#10003; Copy link ready</div>
-                  </div>
-                </div>
-                <div class="phone-bar" style="margin-top:auto;">
-                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
-                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-                  <div class="phone-bar-item active"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-                </div>
+              <div class="phone-screen-inner phone-screen-inner--image">
+                <img class="phone-screenshot" src="assets/custom_profile_link.jpeg" alt="Share your custom profile link in VAI">
               </div>
             </div>
           </div>
@@ -2727,47 +2683,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
               <span class="earn-step-num">2</span>
               They get 50% off for life
             </div>
-            <div class="phone-mockup--small">
+            <div class="phone-mockup--small mockup-image-only">
               <div class="phone-notch"></div>
-              <div class="phone-screen-inner">
-                <div class="phone-header">
-                  <div class="phone-header-logo" style="color:var(--green);">Invite Accepted</div>
-                  <div class="phone-header-sub">Step 2: Friend discount unlocked</div>
-                </div>
-                <div class="phone-card" style="padding:10px;">
-                  <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Plan Price</div>
-                  <div style="display:flex;align-items:baseline;gap:8px;">
-                    <span style="font-size:11px;color:var(--text-3);text-decoration:line-through;">$19.95/mo</span>
-                    <span style="font-size:20px;font-weight:700;color:var(--green);font-family:'Geist Mono',monospace;">$9.97</span>
-                  </div>
-                  <div style="font-size:10px;color:var(--green);font-weight:600;margin-top:4px;">50% off for life</div>
-                </div>
-                <div style="display:flex;gap:8px;">
-                  <div class="phone-card" style="flex:1;padding:10px;">
-                    <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Savings</div>
-                    <div style="font-size:18px;font-weight:700;color:var(--orange);font-family:'Geist Mono',monospace;">$119</div>
-                    <div style="font-size:9px;color:var(--text-3);">per year</div>
-                  </div>
-                  <div class="phone-card" style="flex:1;padding:10px;">
-                    <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Status</div>
-                    <div style="font-size:12px;font-weight:700;color:var(--green);">ACTIVE</div>
-                    <div style="font-size:9px;color:var(--text-3);">Discount applied</div>
-                  </div>
-                </div>
-                <div class="phone-card" style="padding:10px;">
-                  <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Benefits Enabled</div>
-                  <div style="font-size:11px;color:var(--text-2);line-height:1.8;">
-                    <div>&#10003; Full AVANTI access</div>
-                    <div>&#10003; Family dashboard active</div>
-                    <div>&#10003; Renewal locked at 50% off</div>
-                  </div>
-                </div>
-                <div class="phone-bar" style="margin-top:auto;">
-                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
-                  <div class="phone-bar-item active"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-                </div>
+              <div class="phone-screen-inner phone-screen-inner--image">
+                <img class="phone-screenshot" src="assets/share_and_earn.jpeg" alt="Share and Earn referral screen in VAI">
               </div>
             </div>
           </div>
@@ -2777,41 +2696,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
               <span class="earn-step-num">3</span>
               You earn 25% recurring
             </div>
-            <div class="phone-mockup--small">
+            <div class="phone-mockup--small mockup-image-only">
               <div class="phone-notch"></div>
-              <div class="phone-screen-inner">
-                <div class="phone-header">
-                  <div class="phone-header-logo" style="color:var(--green);">Commissions</div>
-                  <div class="phone-header-sub">Step 3: Recurring income</div>
-                </div>
-                <div style="display:flex;gap:8px;">
-                  <div class="phone-card" style="flex:1;padding:10px;">
-                    <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">This Month</div>
-                    <div style="font-size:20px;font-weight:700;color:var(--green);font-family:'Geist Mono',monospace;">$142</div>
-                  </div>
-                  <div class="phone-card" style="flex:1;padding:10px;">
-                    <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Recurring</div>
-                    <div style="font-size:20px;font-weight:700;color:var(--orange);font-family:'Geist Mono',monospace;">25%</div>
-                  </div>
-                </div>
-                <div class="phone-card" style="padding:10px;">
-                  <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Recent Payouts</div>
-                  <div style="font-size:11px;color:var(--text-2);line-height:1.8;">
-                    <div>&#10003; Alex M. renewal <span style="color:var(--green);font-weight:600;">+$4.99</span></div>
-                    <div>&#10003; Coach Rivera renewal <span style="color:var(--green);font-weight:600;">+$4.99</span></div>
-                    <div>&#10003; Team Santos annual <span style="color:var(--green);font-weight:600;">+$24.99</span></div>
-                  </div>
-                </div>
-                <div class="phone-card" style="padding:10px;">
-                  <div style="font-size:8px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Projection</div>
-                  <div style="font-size:12px;color:var(--text-2);line-height:1.6;">At this pace: <strong style="color:var(--orange);">$1,704/yr</strong> from referrals.</div>
-                </div>
-                <div class="phone-bar" style="margin-top:auto;">
-                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
-                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-                  <div class="phone-bar-item active"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-                  <div class="phone-bar-item"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-                </div>
+              <div class="phone-screen-inner phone-screen-inner--image">
+                <img class="phone-screenshot" src="assets/payments_received.jpeg" alt="Recurring referral payout screen in VAI">
               </div>
             </div>
           </div>
@@ -2906,65 +2794,58 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           </div>
 
           <div class="mentor-features">
-            <!-- Group 1: Business Operations (matches mockup 1) -->
-            <div class="mentor-feature-group active" data-group="0">
-              <div class="mentor-feat">
-                <div class="mentor-feat-icon">
-                  <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                </div>
-                <div>
-                  <div class="mentor-feat-name">Payment Management</div>
-                  <div class="mentor-feat-desc">Accept payments directly — no third-party processor needed</div>
-                </div>
+            <div class="mentor-feat active" data-mentor-index="0">
+              <div class="mentor-feat-icon">
+                <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
               </div>
-              <div class="mentor-feat">
-                <div class="mentor-feat-icon">
-                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <div>
-                  <div class="mentor-feat-name">Subscription Billing</div>
-                  <div class="mentor-feat-desc">Set it once, collect recurring revenue automatically</div>
-                </div>
-              </div>
-              <div class="mentor-feat">
-                <div class="mentor-feat-icon">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                </div>
-                <div>
-                  <div class="mentor-feat-name">Calendar &amp; Scheduling</div>
-                  <div class="mentor-feat-desc">Clients book directly, you manage availability</div>
-                </div>
+              <div>
+                <div class="mentor-feat-name">Payment Management</div>
+                <div class="mentor-feat-desc">Accept payments directly with built-in card processing.</div>
               </div>
             </div>
-
-            <!-- Group 2: Growth & AI (matches mockup 2) -->
-            <div class="mentor-feature-group" data-group="1">
-              <div class="mentor-feat">
-                <div class="mentor-feat-icon">
-                  <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
-                </div>
-                <div>
-                  <div class="mentor-feat-name">Revenue Dashboards</div>
-                  <div class="mentor-feat-desc">See your earnings, client count, and growth — in real time</div>
-                </div>
+            <div class="mentor-feat" data-mentor-index="1">
+              <div class="mentor-feat-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               </div>
-              <div class="mentor-feat">
-                <div class="mentor-feat-icon">
-                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-                </div>
-                <div>
-                  <div class="mentor-feat-name">Custom Branded Website</div>
-                  <div class="mentor-feat-desc">Professional site that's ready when you are — no design skills needed</div>
-                </div>
+              <div>
+                <div class="mentor-feat-name">Request Payments</div>
+                <div class="mentor-feat-desc">Send payment requests in seconds and track status instantly.</div>
               </div>
-              <div class="mentor-feat">
-                <div class="mentor-feat-icon">
-                  <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                </div>
-                <div>
-                  <div class="mentor-feat-name">AI-Enhanced Engagement</div>
-                  <div class="mentor-feat-desc"><span class="text-avanti">AVANTI</span> keeps your clients engaged between sessions</div>
-                </div>
+            </div>
+            <div class="mentor-feat" data-mentor-index="2">
+              <div class="mentor-feat-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <div>
+                <div class="mentor-feat-name">Calendar &amp; Scheduling</div>
+                <div class="mentor-feat-desc">Let clients book availability while you stay organized.</div>
+              </div>
+            </div>
+            <div class="mentor-feat" data-mentor-index="3">
+              <div class="mentor-feat-icon">
+                <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+              </div>
+              <div>
+                <div class="mentor-feat-name">Revenue Tracking</div>
+                <div class="mentor-feat-desc">See incoming payouts and recurring income in one view.</div>
+              </div>
+            </div>
+            <div class="mentor-feat" data-mentor-index="4">
+              <div class="mentor-feat-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              </div>
+              <div>
+                <div class="mentor-feat-name">Branded Profile</div>
+                <div class="mentor-feat-desc">Show your brand and offerings with a polished public profile.</div>
+              </div>
+            </div>
+            <div class="mentor-feat" data-mentor-index="5">
+              <div class="mentor-feat-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div>
+                <div class="mentor-feat-name">AI Engagement</div>
+                <div class="mentor-feat-desc"><span class="text-avanti">AVANTI</span> keeps clients active between sessions and events.</div>
               </div>
             </div>
           </div>
@@ -2972,6 +2853,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="mentor-dots">
             <span class="mentor-dot active" data-index="0"></span>
             <span class="mentor-dot" data-index="1"></span>
+            <span class="mentor-dot" data-index="2"></span>
+            <span class="mentor-dot" data-index="3"></span>
+            <span class="mentor-dot" data-index="4"></span>
+            <span class="mentor-dot" data-index="5"></span>
           </div>
 
           <div class="mentor-cta">
@@ -2983,72 +2868,57 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
 
         <div class="mentor-right">
-          <!-- Mockup 1: Business Operations -->
           <div class="mentor-mockup-slide active" data-mockup="0">
-            <div class="phone-mockup--small">
+            <div class="phone-mockup--small mockup-image-only">
               <div class="phone-notch"></div>
-              <div class="phone-screen-inner">
-                <div class="phone-header">
-                  <div class="phone-header-logo" style="color:var(--orange);">Mentor</div>
-                  <div class="phone-header-sub">Business Operations</div>
-                </div>
-                <div class="phone-card">
-                  <div class="phone-card-label">Recent Payments</div>
-                  <div style="font-size:11px;color:var(--text-2);line-height:1.9;">
-                    <div style="display:flex;justify-content:space-between;"><span>Maria G.</span><span style="color:var(--green);font-weight:600;">+$49.95</span></div>
-                    <div style="display:flex;justify-content:space-between;"><span>Jake L.</span><span style="color:var(--green);font-weight:600;">+$49.95</span></div>
-                    <div style="display:flex;justify-content:space-between;"><span>Team Aces</span><span style="color:var(--green);font-weight:600;">+$199.00</span></div>
-                  </div>
-                </div>
-                <div class="phone-card" style="padding:10px;">
-                  <div class="phone-card-label">Today's Schedule</div>
-                  <div style="font-size:10px;color:var(--text-2);line-height:2;">
-                    <div><span style="color:var(--orange);font-weight:600;">9:00</span> — Private session (Jake)</div>
-                    <div><span style="color:var(--orange);font-weight:600;">11:30</span> — Group class</div>
-                    <div><span style="color:var(--orange);font-weight:600;">3:00</span> — Team Aces practice</div>
-                  </div>
-                </div>
-                <div class="phone-card" style="padding:10px;">
-                  <div class="phone-card-label">Active Subscriptions</div>
-                  <div style="font-size:18px;font-weight:700;color:var(--orange);font-family:'Geist Mono',monospace;">28</div>
-                  <div style="font-size:10px;color:var(--text-2);">clients &middot; $1,398/mo recurring</div>
-                </div>
+              <div class="phone-screen-inner phone-screen-inner--image">
+                <img class="phone-screenshot" src="assets/payments_stripe.jpeg" alt="Mentor payment operations screen in VAI">
               </div>
             </div>
           </div>
 
           <!-- Mockup 2: Growth & AI -->
           <div class="mentor-mockup-slide" data-mockup="1">
-            <div class="phone-mockup--small">
+            <div class="phone-mockup--small mockup-image-only">
               <div class="phone-notch"></div>
-              <div class="phone-screen-inner">
-                <div class="phone-header">
-                  <div class="phone-header-logo" style="color:var(--orange);">Mentor</div>
-                  <div class="phone-header-sub">Growth &amp; AI</div>
-                </div>
-                <div class="phone-card" style="padding:10px;">
-                  <div class="phone-card-label">Monthly Revenue</div>
-                  <div style="font-size:22px;font-weight:700;color:var(--green);font-family:'Geist Mono',monospace;">$4,280</div>
-                  <div style="font-size:10px;color:var(--green);">&#9650; 23% from last month</div>
-                  <div style="height:4px;background:var(--surface);border-radius:2px;margin-top:8px;overflow:hidden;">
-                    <div style="width:78%;height:100%;background:var(--green);border-radius:2px;"></div>
-                  </div>
-                </div>
-                <div class="phone-card" style="padding:10px;">
-                  <div class="phone-card-label">Your Website</div>
-                  <div style="background:var(--surface);border-radius:6px;padding:8px;margin-top:4px;">
-                    <div style="font-size:10px;font-weight:700;color:var(--text);">coachrivera.vai.app</div>
-                    <div style="font-size:9px;color:var(--text-3);margin-top:2px;">142 visits this week</div>
-                  </div>
-                </div>
-                <div class="phone-card" style="padding:10px;">
-                  <div class="phone-card-label"><span style="color:var(--green);font-weight:700;">AVANTI</span> Engagement</div>
-                  <div style="font-size:11px;color:var(--text-2);line-height:1.8;margin-top:4px;">
-                    <div>18 clients received AI tips today</div>
-                    <div>92% engagement rate</div>
-                    <div style="color:var(--green);font-weight:600;margin-top:4px;">&#10003; Clients stay active between sessions</div>
-                  </div>
-                </div>
+              <div class="phone-screen-inner phone-screen-inner--image">
+                <img class="phone-screenshot" src="assets/request_payment.jpeg" alt="Mentor payment request screen in VAI">
+              </div>
+            </div>
+          </div>
+
+          <div class="mentor-mockup-slide" data-mockup="2">
+            <div class="phone-mockup--small mockup-image-only">
+              <div class="phone-notch"></div>
+              <div class="phone-screen-inner phone-screen-inner--image">
+                <img class="phone-screenshot" src="assets/calendar.jpeg" alt="Mentor calendar and scheduling screen in VAI">
+              </div>
+            </div>
+          </div>
+
+          <div class="mentor-mockup-slide" data-mockup="3">
+            <div class="phone-mockup--small mockup-image-only">
+              <div class="phone-notch"></div>
+              <div class="phone-screen-inner phone-screen-inner--image">
+                <img class="phone-screenshot" src="assets/payments_received.jpeg" alt="Mentor revenue tracking screen in VAI">
+              </div>
+            </div>
+          </div>
+
+          <div class="mentor-mockup-slide" data-mockup="4">
+            <div class="phone-mockup--small mockup-image-only">
+              <div class="phone-notch"></div>
+              <div class="phone-screen-inner phone-screen-inner--image">
+                <img class="phone-screenshot" src="assets/group_profile.jpeg" alt="Mentor branded profile screen in VAI">
+              </div>
+            </div>
+          </div>
+
+          <div class="mentor-mockup-slide" data-mockup="5">
+            <div class="phone-mockup--small mockup-image-only">
+              <div class="phone-notch"></div>
+              <div class="phone-screen-inner phone-screen-inner--image">
+                <img class="phone-screenshot" src="assets/upcoming_events.jpeg" alt="Mentor AI engagement screen in VAI">
               </div>
             </div>
           </div>
@@ -3310,11 +3180,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-logo">
-          <svg viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="8" fill="#F7941E"/>
-            <path d="M8 10L16 24L24 10" stroke="#0C0A09" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          VAI
+          <img src="assets/logo-white-name.svg" alt="VAI" class="footer-logo-img">
         </div>
         <p class="footer-desc">
           Smart tools for athletes, coaches, trainers, and families. Train smarter. Grow stronger.
@@ -3521,33 +3387,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Section 7: Mentor mockup/feature auto-switch ──
   const mentorMockups = document.querySelectorAll('.mentor-mockup-slide');
-  const mentorGroups = document.querySelectorAll('.mentor-feature-group');
+  const mentorFeatures = document.querySelectorAll('.mentor-features .mentor-feat[data-mentor-index]');
   const mentorDots = document.querySelectorAll('.mentor-dot');
   let mentorIndex = 0;
 
   function switchMentor(newIndex) {
-    mentorMockups[mentorIndex].classList.remove('active');
-    mentorGroups[mentorIndex].classList.remove('active');
-    mentorDots[mentorIndex].classList.remove('active');
+    if (newIndex < 0 || newIndex >= mentorMockups.length) return;
+    mentorMockups[mentorIndex]?.classList.remove('active');
+    mentorFeatures[mentorIndex]?.classList.remove('active');
+    mentorDots[mentorIndex]?.classList.remove('active');
     mentorIndex = newIndex;
     mentorMockups[mentorIndex].classList.add('active');
-    mentorGroups[mentorIndex].classList.add('active');
-    mentorDots[mentorIndex].classList.add('active');
+    mentorFeatures[mentorIndex]?.classList.add('active');
+    mentorDots[mentorIndex]?.classList.add('active');
   }
 
-  let mentorTimer = setInterval(() => {
-    switchMentor((mentorIndex + 1) % 2);
-  }, 5000);
+  const mentorCount = Math.min(mentorMockups.length, mentorFeatures.length, mentorDots.length);
+  if (mentorCount > 0) {
+    let mentorTimer = setInterval(() => {
+      switchMentor((mentorIndex + 1) % mentorCount);
+    }, 5000);
 
-  mentorDots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      clearInterval(mentorTimer);
-      switchMentor(parseInt(dot.dataset.index));
-      mentorTimer = setInterval(() => {
-        switchMentor((mentorIndex + 1) % 2);
-      }, 5000);
+    mentorDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const nextIndex = parseInt(dot.dataset.index, 10);
+        if (Number.isNaN(nextIndex)) return;
+        clearInterval(mentorTimer);
+        switchMentor(nextIndex);
+        mentorTimer = setInterval(() => {
+          switchMentor((mentorIndex + 1) % mentorCount);
+        }, 5000);
+      });
     });
-  });
+
+    mentorFeatures.forEach(feature => {
+      feature.addEventListener('click', () => {
+        const nextIndex = parseInt(feature.dataset.mentorIndex, 10);
+        if (Number.isNaN(nextIndex)) return;
+        clearInterval(mentorTimer);
+        switchMentor(nextIndex);
+        mentorTimer = setInterval(() => {
+          switchMentor((mentorIndex + 1) % mentorCount);
+        }, 5000);
+      });
+    });
+  }
 
   // ── Section 8: Testimonial carousel ──
   const tSlides = document.querySelectorAll('.testimonial-slide');
