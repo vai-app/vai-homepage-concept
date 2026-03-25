@@ -696,7 +696,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 900px) {
   .hero { padding: 110px 0 60px; }
   .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero-visual { order: -1; }
   .phone-mockup { width: 222px; height: 480px; }
   .hero-pillars { grid-template-columns: 1fr; }
 }
@@ -1672,7 +1671,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .pricing-amount {
-  font-family: 'Geist Mono', monospace;
+  font-family: 'Geist', monospace;
   font-size: 40px;
   font-weight: 700;
   line-height: 1;
@@ -1842,7 +1841,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
   gap: 40px;
   margin-bottom: 48px;
 }
@@ -2294,9 +2293,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 @media (max-width: 900px) {
   .mentor-grid { grid-template-columns: 1fr; }
-  .mentor-right { min-height: 480px; }
-  .mentor-left .mentor-header { text-align: center; }
-  .mentor-features { min-height: 154px; }
+  .mentor-left { display: contents; }
+  .mentor-header { order: 1; text-align: center; }
+  .mentor-features { order: 2; min-height: 154px; }
+  .mentor-right { order: 3; min-height: 480px; }
+  .mentor-dots { order: 4; justify-content: center; }
+  .mentor-cta { order: 5; text-align: center; }
+}
+
+/* ── DRAGGABLE CAROUSELS ── */
+.earn-carousel,
+.mentor-features,
+.mentor-right,
+.testimonial-carousel {
+  cursor: grab; touch-action: pan-y; -webkit-user-select: none; user-select: none;
+}
+.earn-carousel.dragging,
+.mentor-features.dragging,
+.mentor-right.dragging,
+.testimonial-carousel.dragging {
+  cursor: grabbing;
 }
 
 /* ── SECTION 8: TESTIMONIAL CAROUSEL ── */
@@ -3043,7 +3059,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="pricing-name">VAI+</div>
         <div class="pricing-tagline">Smart coaching and deeper insights</div>
         <div class="pricing-price">
-          <span class="pricing-amount mono price-vai-plus">$19.95</span>
+          <span class="pricing-amount price-vai-plus">$19.95</span>
           <span class="pricing-period period-vai-plus">/mo</span>
         </div>
         <div class="pricing-savings" id="savingsPlus">Save $39.90/yr</div>
@@ -3082,7 +3098,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="pricing-name">VAI MENTOR</div>
         <div class="pricing-tagline">Run and grow your business</div>
         <div class="pricing-price">
-          <span class="pricing-amount mono price-vai-mentor">$99.95</span>
+          <span class="pricing-amount price-vai-mentor">$99.95</span>
           <span class="pricing-period period-vai-mentor">/mo</span>
         </div>
         <div class="pricing-savings" id="savingsMentor">Save $203.45/yr</div>
@@ -3211,22 +3227,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </ul>
       </div>
 
-      <div class="footer-stack">
-        <div>
-          <div class="footer-col-title">Company</div>
-          <ul class="footer-links">
-            <li><a href="mailto:support@vai.app">Support</a></li>
-          </ul>
+      <div>
+        <div class="footer-col-title">
+          Company
         </div>
-        <div>
-          <div class="footer-col-title">Get the App</div>
-          <ul class="footer-links">
-            <li><a href="https://apps.apple.com/us/app/vai-from-next-level-athlete/id6447384009">iOS App Store</a></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.nla.vaiapp">Google Play</a></li>
-          </ul>
-        </div>
+        <ul class="footer-links">
+          <li><a href="mailto:support@vai.app">Support</a></li>
+        </ul>
       </div>
 
+      <div>
+        <div class="footer-col-title">
+          Policies
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://gameday.vai.app/legal/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a></li>
+          <li><a href="https://gameday.vai.app/legal/affiliate-agreement" target="_blank" rel="noopener noreferrer">Affiliate Agreement</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">
+          Get the App
+        </div>
+          <ul class="footer-links">
+            <li><a href="https://apps.apple.com/us/app/vai-from-next-level-athlete/id6447384009" target="_blank" rel="noopener noreferrer">iOS App Store</a></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.nla.vaiapp" target="_blank" rel="noopener noreferrer">Google Play</a></li>
+          </ul>
+      </div>
     </div>
 
     <div class="footer-bottom">
@@ -3352,20 +3380,25 @@ document.addEventListener('DOMContentLoaded', () => {
     earnDots[earnIndex].classList.add('active');
   }
 
+  let earnTimer = null;
+  function resetEarnTimer() {
+    clearInterval(earnTimer);
+    if (earnSlides.length > 0) {
+      earnTimer = setInterval(() => {
+        switchEarn((earnIndex + 1) % earnSlides.length);
+      }, 3000);
+    }
+  }
+
   if (earnSlides.length > 0 && earnSlides.length === earnDots.length) {
-    let earnTimer = setInterval(() => {
-      switchEarn((earnIndex + 1) % earnSlides.length);
-    }, 3000);
+    resetEarnTimer();
 
     earnDots.forEach(dot => {
       dot.addEventListener('click', () => {
         const nextIndex = parseInt(dot.dataset.index, 10);
         if (Number.isNaN(nextIndex)) return;
-        clearInterval(earnTimer);
         switchEarn(nextIndex);
-        earnTimer = setInterval(() => {
-          switchEarn((earnIndex + 1) % earnSlides.length);
-        }, 3000);
+        resetEarnTimer();
       });
     });
   }
@@ -3388,20 +3421,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const mentorCount = Math.min(mentorMockups.length, mentorFeatures.length, mentorDots.length);
+  let mentorTimer = null;
+  function resetMentorTimer() {
+    clearInterval(mentorTimer);
+    if (mentorCount > 0) {
+      mentorTimer = setInterval(() => {
+        switchMentor((mentorIndex + 1) % mentorCount);
+      }, 5000);
+    }
+  }
+
   if (mentorCount > 0) {
-    let mentorTimer = setInterval(() => {
-      switchMentor((mentorIndex + 1) % mentorCount);
-    }, 5000);
+    resetMentorTimer();
 
     mentorDots.forEach(dot => {
       dot.addEventListener('click', () => {
         const nextIndex = parseInt(dot.dataset.index, 10);
         if (Number.isNaN(nextIndex)) return;
-        clearInterval(mentorTimer);
         switchMentor(nextIndex);
-        mentorTimer = setInterval(() => {
-          switchMentor((mentorIndex + 1) % mentorCount);
-        }, 5000);
+        resetMentorTimer();
       });
     });
 
@@ -3409,11 +3447,8 @@ document.addEventListener('DOMContentLoaded', () => {
       feature.addEventListener('click', () => {
         const nextIndex = parseInt(feature.dataset.mentorIndex, 10);
         if (Number.isNaN(nextIndex)) return;
-        clearInterval(mentorTimer);
         switchMentor(nextIndex);
-        mentorTimer = setInterval(() => {
-          switchMentor((mentorIndex + 1) % mentorCount);
-        }, 5000);
+        resetMentorTimer();
       });
     });
   }
@@ -3431,19 +3466,24 @@ document.addEventListener('DOMContentLoaded', () => {
     tDots[tIndex].classList.add('active');
   }
 
-  let tTimer = setInterval(() => {
-    switchTestimonial((tIndex + 1) % tSlides.length);
-  }, 5000);
-
-  tDots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      clearInterval(tTimer);
-      switchTestimonial(parseInt(dot.dataset.index));
+  let tTimer = null;
+  function resetTTimer() {
+    clearInterval(tTimer);
+    if (tSlides.length > 0) {
       tTimer = setInterval(() => {
         switchTestimonial((tIndex + 1) % tSlides.length);
       }, 5000);
+    }
+  }
+  resetTTimer();
+
+  tDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      switchTestimonial(parseInt(dot.dataset.index));
+      resetTTimer();
     });
   });
+
 
   // ── Section 9: Pricing toggle ──
   const pricingToggle = document.getElementById('pricingToggle');
@@ -3463,6 +3503,77 @@ document.addEventListener('DOMContentLoaded', () => {
       monthlyLabel.classList.toggle('active-label', !yearly);
       yearlyLabel.classList.toggle('active-label', yearly);
     });
+  }
+
+  // ── Drag / swipe support for all carousels ──
+  function makeDraggable(el, onPrev, onNext) {
+    let startX = 0, startY = 0, dragging = false, moved = false;
+    const threshold = 40;
+
+    function down(e) {
+      const pt = e.touches ? e.touches[0] : e;
+      startX = pt.clientX;
+      startY = pt.clientY;
+      dragging = true;
+      moved = false;
+      el.classList.add('dragging');
+    }
+    function move(e) {
+      if (!dragging) return;
+      const pt = e.touches ? e.touches[0] : e;
+      const dx = pt.clientX - startX;
+      const dy = pt.clientY - startY;
+      if (Math.abs(dx) > 10) moved = true;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10 && e.cancelable) {
+        e.preventDefault();
+      }
+    }
+    function up(e) {
+      if (!dragging) return;
+      dragging = false;
+      el.classList.remove('dragging');
+      const pt = e.changedTouches ? e.changedTouches[0] : e;
+      const dx = pt.clientX - startX;
+      if (Math.abs(dx) >= threshold) {
+        dx < 0 ? onNext() : onPrev();
+      }
+    }
+
+    el.addEventListener('touchstart', down, { passive: true });
+    el.addEventListener('touchmove', move, { passive: false });
+    el.addEventListener('touchend', up);
+    el.addEventListener('mousedown', down);
+    el.addEventListener('mousemove', move);
+    el.addEventListener('mouseup', up);
+    el.addEventListener('mouseleave', () => { if (dragging) { dragging = false; el.classList.remove('dragging'); } });
+  }
+
+  // Earn carousel drag
+  const earnCarouselEl = document.querySelector('.earn-carousel');
+  if (earnCarouselEl && earnSlides.length > 1) {
+    makeDraggable(earnCarouselEl,
+      () => { switchEarn((earnIndex - 1 + earnSlides.length) % earnSlides.length); resetEarnTimer(); },
+      () => { switchEarn((earnIndex + 1) % earnSlides.length); resetEarnTimer(); }
+    );
+  }
+
+  // Mentor carousel drag (both features and mockup areas)
+  const mentorFeatEl = document.querySelector('.mentor-features');
+  const mentorRightEl = document.querySelector('.mentor-right');
+  if (mentorCount > 1) {
+    const mentorPrev = () => { switchMentor((mentorIndex - 1 + mentorCount) % mentorCount); resetMentorTimer(); };
+    const mentorNext = () => { switchMentor((mentorIndex + 1) % mentorCount); resetMentorTimer(); };
+    if (mentorFeatEl) makeDraggable(mentorFeatEl, mentorPrev, mentorNext);
+    if (mentorRightEl) makeDraggable(mentorRightEl, mentorPrev, mentorNext);
+  }
+
+  // Testimonial carousel drag
+  const testimonialEl = document.querySelector('.testimonial-carousel');
+  if (testimonialEl && tSlides.length > 1) {
+    makeDraggable(testimonialEl,
+      () => { switchTestimonial((tIndex - 1 + tSlides.length) % tSlides.length); resetTTimer(); },
+      () => { switchTestimonial((tIndex + 1) % tSlides.length); resetTTimer(); }
+    );
   }
 });
 </script>
